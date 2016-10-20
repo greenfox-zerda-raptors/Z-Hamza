@@ -1,0 +1,66 @@
+body {
+
+}
+img{
+width: 100%;
+
+}
+
+
+
+strong {
+font-weight: bold;
+}
+strunder {
+  font-weight: bold;
+  text-decoration: underline;
+
+}
+
+
+
+h1 {
+text-align: center;
+font-family: medium-content-sans-serif-font,
+"Lucida Grande","Lucida Sans Unicode","Lucida Sans",
+Geneva,Arial,sans-serif;
+font-size: 32px;
+font-weight: bold;
+font-style: normal;
+color:rgba(0,0,0,.8);
+letter-spacing: -0.896px;
+line-height: 33.28px;
+
+}
+
+h2 {
+text-align: center;
+font-family: medium-content-sans-serif-font,
+"Lucida Grande","Lucida Sans Unicode","Lucida Sans",
+Geneva,Arial,sans-serif;
+font-size: 23px;
+font-weight: 300;
+font-style: normal;
+color:rgba(0,0,0,.44);
+letter-spacing: -0.506px;
+line-height: 28.06px;
+
+
+
+}
+article {
+  width: 700px;
+  margin:0 auto;
+
+  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+   Geneva,Arial,sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.072px;
+  color:rgba(0,0,0,.8);
+  font-weight: normal;
+
+  line-height: 27px;
+}
+ p {
+
+ }
