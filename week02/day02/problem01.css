@@ -1,0 +1,118 @@
+body{
+margin: -5% 20% 0%;
+color: rgb(77, 62, 98);
+}
+.box{
+  background-color: rgb(221, 214, 204);
+  box-sizing: content-box;
+  padding: 100px;
+}
+/*the values for the options*/
+.textbox{
+  padding: 2px;
+  border-radius: 2px;
+  width:100%;
+  height: 35px;
+}
+
+/*Title*/
+h1{
+font-weight: normal;
+}
+/*Subtitle*/
+h2{
+  background-color: rgb(149, 138, 151);
+  padding:2%;
+  color: white;
+  border-radius: 3px;
+  width:100%;
+  height:5%;
+  font-weight: normal;
+}
+/*The title of the boxes*/
+h3{
+font-size: 14px;
+font-weight: bold;
+margin-bottom: 0px;
+}
+.column1{
+float: left;
+
+}
+.column2{
+  margin-left: 60px;
+  float: left;
+  text-align: left;
+  width: 45%;
+}
+/*First column texts*/
+.dateofbirth{
+  float: left;
+  margin-right: 70px;
+}
+.sex{
+  float: left;
+
+}
+.birth{
+  width: 70px;
+  height:35px;
+  border-radius: 2px;
+}
+
+.checkboxing{/*The chackboxes in the first column*/
+margin-top: 100px;
+margin-bottom: 20px;
+}
+.brand1{
+  float: left;
+  margin-right: 45px;
+}
+.brand2{
+float: left;
+}
+
+.helptext{/*The text which says the help under the checkboxes*/
+  clear: both;
+  text-align: left;
+  opacity: 0.5;
+}
+
+/*the bottom section*/
+.bottom{
+  clear: both;
+}
+
+.buttonpart1{
+float: left;
+}
+.buttonpart2{
+  float: right;
+}
+
+
+a{  /*the color of the URL*/
+  color:rgb(77, 62, 98);
+}
+
+
+/*Buttom settings*/
+.button{
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border:none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.dark{
+  background-color: rgb(73, 58, 92);
+  color: white;
+  width:200%;
+}
+.grey{
+background-color: rgb(248, 248, 248);
+border: solid;
+border-width: 1px;
+border-color: #BDBDBD;
+}
