@@ -1,0 +1,27 @@
+body {
+
+  margin: 0% 35% 0% ;
+  /* if the text is needed to be on the left, the value of the margin should be changed to  0% 70% 0% 0%;  */
+  font-size: 16px;
+  text-align: justify;
+
+}
+
+.block{
+  border-bottom-style: solid;
+  border-width: medium;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+}
+
+img{
+  padding: 10px;
+
+}
+.duck1{
+  float: left;
+
+}
+.duck2{
+  float: right;
+}

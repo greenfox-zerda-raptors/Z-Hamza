@@ -1,0 +1,106 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> problem01_day02_week02 </title>
+  <link rel="stylesheet" type="text/css" href=problem01.css>
+
+</head>
+<body>
+  <form method="post" action="email.php">
+  <div class=box>
+    <h1> Profil</h1>
+    <div class="column1">
+      <h2>Személyes adatok</h2>
+      <from>
+        <h3>Név<sup> <span style="color:red">*</span></sup> </h3>
+        <input type="text" name="Név" placeholder="Example von Exampleland" class="textbox">
+
+        <br>
+        <div class=dateofbirth>
+          <h3> Sz&#252let&eacutesi &eacuteved</h3>
+          <input type="number" name="yearofbirth" placeholder="pl. 1984" class="birth">
+        </div>
+        <div class=sex>
+          <h3>Nemed<h3>
+            <p>
+              <input type="radio" name="gender" value="female"><span style="font-weight:normal"> nő
+              <input type="radio" name="gender" value="male"> férfi </span>
+              <br></
+            </p>
+          </div>
+          <div class="checkboxing">
+            <h3> Milyen márkákat szeretsz? </h3>
+
+          <p>
+            <div class=brand1>
+              <input type="checkbox" name="choice01" value="adidas"> Adidas<br>
+              <input type="checkbox" name="choice02" value="apple"> Apple<br>
+              <input type="checkbox" name="choice03" value="coca-cola"> Coca-Cola<br>
+              <input type="checkbox" name="choice04" value="mazda"> Mazda<br>
+              <input type="checkbox" name="choice05" value="nike"> Nike<br>
+            </div>
+            <div class=brand2>
+              <input type="checkbox" name="choice06" value="opel"> Opel<br>
+              <input type="checkbox" name="choice07" value="ray-ban"> Ray-Ban<br>
+              <input type="checkbox" name="choice08" value="starbucks"> Starbucks<br>
+              <input type="checkbox" name="choice09" value="tesla"> Tesla<br>
+              <input type="checkbox" name="choice10" value="yahoo"> Yahoo<br>
+            </div>
+          </p>
+        </div>
+          <p class="helptext"> Többet is választhatsz!</p>
+        </div>
+        <div class="column2">
+          <h2> Kapcsolat </h2>
+
+            <h3>Telefonsz&aacutem<sup> <span style="color:red">*</span></sup></h3>
+            <input type="tel" name="usertell" placeholder="+36 -- --- ----" class="textbox" >
+
+
+
+              <h3> E-mail c&iacutem<sup> <span style="color:red">*</span></sup> </h3>
+              <input type="email" name="useremail" placeholder="somebody&#64example.com" class="textbox" >
+              <br>
+
+
+                <h3>Facebook profilod</h3>
+                  <input type="url" name="FacebookProfile" placeholder="https//&#58facebook.com/..." class="textbox"> <br>
+                <h3>Twitter profilod</h3>
+                  <input type="url" name="TwitterProfile" placeholder="https//&#58twitter.com/..." class="textbox">
+                  <br>
+                  <h3>Milyen h&aacutezban laksz? </h3>
+                  <select class="textbox">
+                    <option value="" disabled selected>  --Válassz!-- </option>
+                      <option value="Kertes ház"> Kertes ház </option>
+                      <option value="Disznó ól"> Disznó ól </option>
+                      <option value="Társas ház"> Társas ház </option>
+                      <option value="Felhőkarcoló"> Felhőkarcoló </option>
+                  </select>
+
+
+                  </div>
+                  <br>
+                  <div class=bottom>
+                    <h3>Bemutatkoz&aacutes</h3><br>
+                    <p style="margin-top:-20px"><textarea rows="8" cols=80% placeholder="Írj magadról pár mondatot!" style="resize:none"></textarea></p>
+
+                    <h3>CV felt&#246lt&#233se</h3>
+                    <button type="file" name="CV" class="button grey"> Fájl kiválasztása</button>
+                  </div>
+                  <div class="terms">
+                    <p>
+                    <input type="checkbox" name="useraggreement" value="yes">
+
+                    Elfogadom a <a href="">felhasználási feltételeket.<a></p>
+
+                    </div>
+                    <div class=buttonpart1>
+                      <button type="submit" value="submit" class="button dark"> Ment&#233s </button>
+                    </div>
+                    <div class=buttonpart2>
+                      <button type="reset" value="Reset" class="button grey"> Űrlap t&#246rl&#233se </button>
+                    </div>
+                  </div>
+                </form>
+                </body>
+                </html>
