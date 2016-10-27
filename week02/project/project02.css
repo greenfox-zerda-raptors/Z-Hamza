@@ -1,0 +1,204 @@
+body{
+  height: 100%;
+  background-color: #EFEFFB;
+  margin:0 ;
+  line-height: 1.6;
+  font-family: sans-serif;
+}
+.container{
+  width: 100%;
+}
+
+
+/*SIDEBAR*/
+.sidebar{
+  background-color:#EFEFFB; /*to be changed*/
+  width:200px;
+  content: ""; /* to be removed */
+  float:left;
+  margin-right: 25px;
+}
+#wikilogo{
+  position: relative;
+}
+#cringe{
+  position: fixed;
+  height: 100px;
+  width:200px;
+  background-color :#EFEFFB; /* to be changed */
+  background: -webkit-linear-gradient(white, #EFEFFB);
+}
+hr{
+  border-width: 1px;
+  border-color: grey;
+  width:70%;
+}
+h6{
+  font-size: 14px;
+  margin-bottom: -10px;
+  margin-left: 25px;
+  font-weight: normal;
+}
+.sidebar li{
+  color: blue;
+  text-decoration: underline;
+  font-size: 12px;
+}
+/*SIDE BAR END*/
+
+
+
+/* HEADER*/
+header{ /* the header with login etc*/
+  height: 100px;
+  width: 100%;
+  background-color :#EFEFFB;
+  background: -webkit-linear-gradient(white, #EFEFFB);
+}
+#headercontent p{
+  float: left;
+  margin-right:15px;
+  margin-top: 65px;
+  float:left;
+  padding:5px;
+  border-left: 1px solid #2ECCFA;
+  border-right: 1px solid #2ECCFA;
+  border-collapse: collapse;
+}
+#headercontent p:first-child{
+  background-color: white;
+}
+.nav1{
+  float:left;
+}
+.nav2{
+  float: right;
+}
+
+.wikiimage{
+  float: left;
+}
+#searchbar{
+  width: 250px;
+  background-image: url(searchicon.jpg);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  height: 25px;
+  background-position: right;
+  float: right;
+  margin-top: 70px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+/* HEADER END*/
+
+/*ARTICLE*/
+
+main{
+  background-color:  white; /* to be removed */
+  border-style: solid;
+  border-right-style: none !important;
+  border-width: 1px;
+  border-color: #2ECCFA;
+  margin-left: 200px;
+  padding: 20px;
+}
+h1, h2{
+  border-bottom-style: solid;
+  border-color: grey;
+  border-width: 2px;
+}
+article{ /* the article itself with text and images*/
+}
+/*CV table*/
+#hamiltonimg01{
+  background-color: #EFEFFB;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 2px solid grey;
+  width:250px;
+  height: 625px;
+  float: right;
+}
+#hamiltonimg01 p{
+  font-size: 10px;
+  margin: 0 0 auto 70px;
+}
+.sajt{
+  font-size: 14px;
+  margin: 0 0 auto 70px;
+}
+h4{
+  text-align: center;
+  font-size: 16px;
+}
+#hamilton01{
+  margin-left: 15px;
+}
+td{
+  font-size: 14px;
+  line-height: 160%;
+}
+td:nth-child(odd){
+  width:60px;
+  font-weight: bold;
+}
+/*CVtable*/
+/*talbe02*/
+#table02{
+  background-color: #EFEFFB;
+  width: 120px;
+  line-height: 1.6;
+  border: 2px solid grey;
+  font-size: 12px;
+}
+ol{
+  margin-left: -15px;
+}
+/*table02 end*/
+/*NASA*/
+.textwimg{ /*paragraphs with images*/
+  max-width: 75%;
+}
+.img020304{
+  float:right;
+}
+.img03{
+  margin-top: 25px;
+}
+.imgcontainer{
+  background-color: #EFEFFB;
+  border: 1px solid grey;
+  padding: 5px;
+  font-size: 14px;
+}
+.img0203{
+  width: 235px;
+}
+.img04{
+  width: 180px;
+}
+.quote{
+  margin-left: 50px;
+}
+ul{
+  list-style-type:disc;
+}
+/*ARTICLE END*/
+
+/*FOOTER*/
+footer{ /* the footer with links and policies shite */
+  background-color: #EFEFFB;
+  width:80%;
+  height: 150px;
+  margin-left: 220px;
+  clear:both;
+  font-size: 12px;
+}
+.footerp{
+  float: left;
+  margin-right: 15px;
+}
+/*FOOTER END*/
+
+/*               E N D          */
