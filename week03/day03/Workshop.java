@@ -1,7 +1,6 @@
-import javax.swing.plaf.basic.BasicSliderUI;
 import java.text.DecimalFormat;
 
-public class problem02 {
+public class Workshop {
     public static void main(String[] args) {
         int a = 3;
         a = a + 10;
