@@ -5,10 +5,10 @@ public class Ch01 {
         int number=0;
         int n=100;
         String Primes="";
-        for(x=1; x<=n; x++)
+        for(x=1 ; x<=n ; x++)
         {
             int c=0;
-            for(number =x; number>=1; number--)
+            for(number = x ; number >= 1 ; number--)
             {
                 if (x % number == 0) {
 
@@ -17,10 +17,12 @@ public class Ch01 {
             }
             if(c==2)
             {
-            Primes=Primes+x+" ";
+//                If it is needed in a string or in one line delete the comments
+//              Primes=Primes+x+" ";
+                System.out.println(x);
             }
         }
-        System.out.println(Primes);
+//        System.out.println(Primes);
 
 
 
