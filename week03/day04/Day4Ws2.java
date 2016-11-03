@@ -59,6 +59,29 @@ public class Day4Ws2 {
             x+=1;
             System.out.println(alma);
         }while ( x < 7 );
+// Write a program which has this output
+        // # # # # #
+        // # # # # #
+        // # # # # #
+        // # # # # #
+        // # # # # #
+        // The # character should be replacable, hence store it in a variable
+
+        String hash="#";
+        String space=" ";
+        String sajt="";
+        int xx=0;
+        int c=0;
+        for(c=1; c<=5; c++) {
+            sajt = sajt + hash + " ";
+
+//            for(xx=1; xx<=7; xx++) {
+
+            }
+        for( xx=1; xx<=5; xx++) {
+            System.out.println(sajt);
+        }
+
 
         // Write a program which has this output
         //# # # # # # #
@@ -69,7 +92,15 @@ public class Day4Ws2 {
         //  # # # # # # #
         // # # # # # # #
         // The # character should be replaceable, hence store it in a variable
-        String test= "              ";
+        String sajt1="";
+        String sajt2="";
+        for(xx=1; xx<=7; xx++) {
+            sajt1 = sajt + hash + " ";
+        }
+      
+
+
+
 
 
     }
