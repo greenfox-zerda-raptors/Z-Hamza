@@ -115,9 +115,5 @@ public class Day5Ws1 {
         for(int iii=0; iii<=abc.length+1; iii++)
             ak2[iii]=ak[Math.abs(iii-4)];
         System.out.println("WS14:    " + Arrays.toString(ak2));
-
-
-
-        
     }
 }
