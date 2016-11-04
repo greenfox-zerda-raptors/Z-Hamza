@@ -1,0 +1,150 @@
+body{
+  height: 100%;
+  background-color: #EFEFFB;
+  margin: 0;
+  line-height: 1.6;
+}
+.container{
+  width: 100%;
+}
+
+
+/*SIDEBAR*/
+.sidebar{
+background-color:#EFEFFB; /*to be changed*/
+width:200px;
+content: ""; /* to be removed */
+float:left;
+margin-right: 25px;
+}
+hr{
+border-width: 1px;
+border-color: grey;
+width:70%;
+}
+h6{
+  font-size: 14px;
+  margin-bottom: -10px;
+  font-weight: normal;
+}
+ul{
+  font-size: 14px;
+}
+/*SIDE BAR END*/
+
+
+
+  /* HEADER*/
+
+  header{ /* the header with login etc*/
+    height: 100px;
+    width: 100%;
+    background-color :#EFEFFB; /* to be changed */
+    background: -webkit-linear-gradient(white, #EFEFFB);
+  }
+  #headercontent{
+
+  }
+  .navigation1{
+    float:left;
+    margin-top: 70px;
+  }
+  .navigation2{
+    float: right;
+    margin-top: 70px;
+  }
+  .wikiimage{
+    float: left;
+
+  }
+  #searchbar{
+    width: 250px;
+    background-image: url(searchicon.jpg);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    height: 25px;
+    background-position: right;
+    float: right;
+    margin-top: 70px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  /* HEADER END*/
+
+/*ARTICLE*/
+
+main{
+  background-color:  #EBEBEB; /* to be removed */
+  border-style: solid;
+  border-right-style: none !important;
+  border-width: 1px;
+  border-color: #2ECCFA;
+  margin-left: 200px;
+  padding: 20px;
+}
+h1, h2{
+  border-bottom-style: solid;
+  border-color: grey;
+  border-width: 2px;
+  clear: both;
+}
+article{ /* the article itself with text and images*/
+}
+/*CV table*/
+#hamiltonimg01{
+font-size:12px ;
+background-color: #EFEFFB;
+padding-left: 12px;
+padding-right: 12px;
+border-style: solid;
+border-color: grey;
+width:250px;
+height: 600px;
+float: right;
+}
+h4{
+  text-align: center;
+  font-size: 12px;
+}
+#hamilton01{
+  margin: 0px auto;
+}
+td:nth-child(odd){
+  width:60px;
+  font-weight: bold;
+
+}
+td:nth-child(even){
+}
+/*CVtable*/
+/*talbe02*/
+#table02{
+  background-color: #EFEFFB;
+  width: 120px;
+  line-height: 1.6;
+  border-width: 2px;
+  border-style: solid;
+  border-color: grey;
+}
+ol{
+  margin-left: -15px;
+}
+/*table02 end*/
+
+.quote{
+  margin-left: 50px;
+}
+
+ul{
+  list-style-type:disc;
+}
+/*ARTICLE END*/
+
+/*FOOTER*/
+footer{ /* the footer with links and policies shite */
+  background-color: blue;
+  width:100%;
+  height: 100px;
+  clear:both;
+}
+/*FOOTER END*/

@@ -13,6 +13,8 @@ table{
   color: #666A85;
   width:100%;
   border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
 }
 th, td{
   height: 60px;
@@ -28,10 +30,10 @@ th{
 th:first-child{
   border-right-style: solid;
   border-right-width: 2px;
-  border-radius: 5px 0px 0px 0px;
+  /*border-radius: 5px 0px 0px 0px;*/
 }
 th:last-child{
-  border-radius: 0px 5px 0px 0px;
+  /*border-radius: 0px 5px 0px 0px;*/
 }
 td{
   border-bottom-style: solid;
@@ -59,8 +61,8 @@ tr:nth-child(odd){
   background-color: #FFFFFF;
 }
 .lastone:first-child{
-  border-radius: 0px 0px 0px 5px;
+  /*border-radius: 0px 0px 0px 5px;*/
 }
 .lastone:last-child{
-  border-radius: 0px 0px 5px 0px;
+  /*border-radius: 0px 0px 5px 0px;*/
 }

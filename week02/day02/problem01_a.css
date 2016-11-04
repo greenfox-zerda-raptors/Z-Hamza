@@ -1,21 +1,16 @@
 body{
 margin: -5% 20% 0%;
 color: rgb(77, 62, 98);
-font-family: sans-serif;
 }
 .box{
   background-color: rgb(221, 214, 204);
   box-sizing: content-box;
   padding: 100px;
 }
-/*the values for the options*/
 .textbox{
   padding: 2px;
-  border-radius: 7px;
-  width:100%;
-  height: 35px;
+  border-radius: 2px;
 }
-
 /*Title*/
 h1{
 font-weight: normal;
@@ -24,66 +19,57 @@ font-weight: normal;
 h2{
   background-color: rgb(149, 138, 151);
   padding:2%;
+  width:40%;
+  height:40px;
   color: white;
   border-radius: 3px;
   width:100%;
-  height:5%;
   font-weight: normal;
 }
 /*The title of the boxes*/
 h3{
 font-size: 14px;
 font-weight: bold;
-margin-bottom: 0px;
 }
 .column1{
 float: left;
 
 }
 .column2{
-  margin-left: 60px;
+
   float: left;
   text-align: left;
-  width: 45%;
+
 }
 /*First column texts*/
 .dateofbirth{
   float: left;
-  margin-right: 70px;
+}
+.birth{
+  width: 80px;
+  height:35px;
+  border-radius: 2px;
 }
 .sex{
   float: left;
+}
+/*The chackboxes*/
 
-}
-.birth{
-  width: 70px;
-  height:35px;
-  border-radius: 7px;
-}
-
-.checkboxing{/*The chackboxes in the first column*/
-margin-top: px;
-margin-bottom: px;
-}
 .brand1{
   float: left;
-  margin-right: 40px;
+  margin-right: 45px;
 }
 .brand2{
 float: left;
 }
-
-.helptext{/*The text which says the help under the checkboxes*/
-  clear: both;
-  text-align: left;
-  opacity: 0.5
-}
-
 /*the bottom section*/
 .bottom{
   clear: both;
 }
-
+.textbox{
+  width:100%;
+  height: 35px;
+}
 .buttonpart1{
 float: left;
 }
@@ -92,8 +78,18 @@ float: left;
 }
 
 
+
+
 a{  /*the color of the URL*/
   color:rgb(77, 62, 98);
+}
+
+
+/*The text which says the help under the checkboxes*/
+.helptext{
+  clear: both;
+  text-align: left;
+  opacity: 0.5;
 }
 
 
