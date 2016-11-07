@@ -1,4 +1,4 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
+// First version
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ public class W04Day01Ws24 {
             // Print the result to the prompt
             // Exit
             String expression;
-            System.out.println("Please type in the expression:");
+            System.out.println("Please type in the expression (without spaces):");
             Scanner input = new Scanner( System.in );
             expression=input.next();
             System.out.println("exp:    " +expression);
@@ -45,9 +45,19 @@ public class W04Day01Ws24 {
                int b =Integer.parseInt(bb);
                System.out.println(a*b);
           }
-
-
-
-
+            if(expression.contains("%")){
+                String aa = expression.substring(0, expression.lastIndexOf("%")+0);
+                String bb = expression.substring(expression.lastIndexOf("%")+1);
+                int a =Integer.parseInt(aa);
+                int b =Integer.parseInt(bb);
+                System.out.println(a%b);
+            }
+            if(expression.contains("/")){
+                String aa = expression.substring(0, expression.lastIndexOf("/")+0);
+                String bb = expression.substring(expression.lastIndexOf("/")+1);
+                int a =Integer.parseInt(aa);
+                int b =Integer.parseInt(bb);
+                System.out.println(a/b);
+            }
         }
 }
