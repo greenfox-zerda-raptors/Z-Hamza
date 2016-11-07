@@ -11,7 +11,11 @@ public class W04Day01Ws17{
     // "fifth"
 
     static void trimAll(List<String> strings) {
-        // ???
+      for(ListIterator<String> it=strings.listIterator(); it.hasNext();){
+          String trimming=it.next();
+          String trimmed=trimming.trim();
+          it.set(trimmed);
+      }
     }
 
     public static void main(String... args){
