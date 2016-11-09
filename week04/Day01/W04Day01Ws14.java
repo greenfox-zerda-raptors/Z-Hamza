@@ -8,9 +8,7 @@ public class W04Day01Ws14{
         ListIterator<String> it= al.listIterator();
 
         while(it.hasNext()){
-            String o = it.next();
-            String a ="a";
-            it.set(o+"a");
+            it.set(it.next()+"a");
         }
         System.out.println(al);
     }
