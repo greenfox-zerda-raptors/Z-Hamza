@@ -22,28 +22,19 @@ import java.util.*;
 public class W04Day03Ws03 {
     static Scanner userInput = new Scanner(System.in);
     public static void main(String[] args) {
-        Integer number = 1;
-        String s ;
-        while (number !=0 ) {
-            number = checkIfValid();
-            s = number.toString();
-            System.out.println("Yum     " +  s.substring(0,s.length()/2));
-        }
-    }
-    public static Integer checkIfValid() {
-        int i =0;
-        boolean flLoop = true;
-        try {
-
-            while (flLoop) {
-                System.out.print("Type in a number: ");
-                i = userInput.nextInt();
-                flLoop = false;
-                userInput.nextLine();
+        Integer input = 1;
+        while (input !=0 ) {
+            System.out.println("INPUT or 0 to end");
+            try {
+                input = userInput.nextInt();
+                String s = Integer.toString(input);
+                System.out.println("Yum   " + s.substring(0, s.length() / 2));
             }
-        }catch( Exception e ){
-            System.out.println("Error");
+                catch(InputMismatchException e){
+                    System.out.println("Too high number\n" + e.getMessage());
+                    userInput.nextLine();
+                }
         }
-        return i;
     }
-} //Workshop03
+
+}

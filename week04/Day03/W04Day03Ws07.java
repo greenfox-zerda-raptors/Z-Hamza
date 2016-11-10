@@ -1,4 +1,3 @@
-import java.util.*;
 /**************************************************************************************************
  * Workshop: Practice Exceptions: Throw an Exception
  *
@@ -19,15 +18,17 @@ import java.util.*;
  * NOTE NOTE: get this right.  We use this again in further exercises!
  *
  **************************************************************************************************/
-
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class W04Day03Ws07 {
 
-
-    public static void myMethod(int testnum) // something should appear here before
+    public static int myMethod(int testnum) throws Exception // something should appear here before
     {
-        if (testnum == 7) // do that thing that chucks the reprobate out
-            return;
+        if (testnum == 7){
+            throw new Exception("The number cannot be 7!");
+        }
+            return 100/(testnum-7);
     }
 
     public static void main(String[] args) {
@@ -43,13 +44,13 @@ public class W04Day03Ws07 {
                 break;
             } else {
                 try {
-                    System.out.println("Let's see...");
+                    System.out.println("try - first statement");
                     myMethod(age);
-                    System.out.println("Try again");
+                    System.out.println("try - last statement");
                 } catch (Exception ex) {
-                    System.out.println("Not that one you twat");
+                    System.out.println(ex.getMessage());
                 }
-            }
-        }
+            } //while
+        } // main
     }
 }
