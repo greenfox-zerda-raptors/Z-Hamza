@@ -1,6 +1,6 @@
 package com.greenfox;
 
-public class CreditCard implements CreditCardy {
+public class CreditCard implements CreditCardy{
     public int SumCVV;
     public String NameCardholder;
     public String CodeAccount;
@@ -56,4 +56,5 @@ public class CreditCard implements CreditCardy {
     public String toString() {
         return "Name = " +NameCardholder+ "  CC#=   "+ CodeAccount +"    CVV=  "+cumeSumCVV(CodeAccount);
     }
+
 }
