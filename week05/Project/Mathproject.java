@@ -34,11 +34,11 @@ public class Mathproject {
                 intexp.add(b);
                 if( a % ( b+1 ) == 0){
                     int f = a/(b+1);
-                    System.out.println(f + ")" + "x" + "^" + (b + 1) +" + C");
+                    System.out.println("(" +f + ")" + "x" + "^" + (b + 1) +" + C");
                 }
                 else if((b+1)%a == 0){
                     int f = (b+1)/a;
-                    System.out.println("("+"1"+"/"+ f + ")" + "x" + "^" + (b+1) + " + C");
+                    System.out.println("(" + "1" + "/" + f + ")" + "x" + "^" + (b+1) + " + C");
                 }
                 else{
                     System.out.println("(" + a + "/" + (b + 1) + ")" + "x" + "^" + (b + 1) +" + C");

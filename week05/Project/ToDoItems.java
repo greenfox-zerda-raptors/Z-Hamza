@@ -1,6 +1,5 @@
 package Project;
 
-import main.java.StringedInstrument;
 
 public class ToDoItems{
     String toDoItem;

@@ -37,6 +37,9 @@ public class TodoList {
     public void addToDoItem(String toDoItem, String truefalse) {
         toDoList.add(new ToDoItems(toDoItem, truefalse));
     }
+    public void replace(int number, String toDoItem){
+        toDoList.set(number, new ToDoItems(toDoItem));
+    }
     public void addToDoItem(ToDoItems toDoItems) {
         toDoList.add(toDoItems);
     }
@@ -78,7 +81,6 @@ public class TodoList {
         return a;
     }
     public String converttoLines(int number){
-        int i = 0;
         String a = "";
         a = toDoList.get(number).getDone() + "    " + (number +1) + ")  "+ toDoList.get(number).toString();
        return a;
