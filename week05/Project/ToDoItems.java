@@ -1,5 +1,7 @@
 package Project;
 
+import main.java.StringedInstrument;
+
 public class ToDoItems{
     String toDoItem;
     int number;
@@ -15,7 +17,7 @@ public class ToDoItems{
     }
     public ToDoItems(String toDoItem, String a){
         this.toDoItem = toDoItem;
-        if(a.equals("true") || a.equals("yes") || a.equals("done") || a.equals("d")){
+        if(a.equals("true") || a.equals("yes") || a.equals("done") || a.equals( "[ x ]")){
             this.done=true;
         }
         else{
@@ -51,4 +53,5 @@ public class ToDoItems{
     public String gettoDoItem() {
         return toDoItem;
     }
+
 }

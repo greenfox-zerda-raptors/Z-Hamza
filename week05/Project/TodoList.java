@@ -37,13 +37,21 @@ public class TodoList {
     public void addToDoItem(String toDoItem, String truefalse) {
         toDoList.add(new ToDoItems(toDoItem, truefalse));
     }
+    public void addToDoItem(ToDoItems toDoItems) {
+        toDoList.add(toDoItems);
+    }
 
     public void removeToDoItem(int element) {
         toDoList.remove(element - 1);
     }
 
     public void change(int number) {
-        toDoList.get(number).Done();
+        if (toDoList.get(number).getDone().contains("0")) {
+            toDoList.get(number).Done();
+        }
+        else{
+            toDoList.get(number).NotDone();
+        }
     }
 
     public String toString() {
@@ -69,4 +77,11 @@ public class TodoList {
         }
         return a;
     }
+    public String converttoLines(int number){
+        int i = 0;
+        String a = "";
+        a = toDoList.get(number).getDone() + "    " + (number +1) + ")  "+ toDoList.get(number).toString();
+       return a;
+    }
+
 }

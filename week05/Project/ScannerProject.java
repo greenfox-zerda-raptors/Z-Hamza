@@ -9,7 +9,9 @@ public class ScannerProject {
     int inputInt;
 
     public void ListScanner() {
-        PrintWriter Listoutput = createFile("C:/Users/Zoltán/Desktop/test/list.txt");
+//        PrintWriter Listoutput = createFile("C:/Users/Zoltán/Desktop/test/list.txt");
+        Getfromfile();
+
         while (scan.hasNext()) {
             String scanned = scan.next();
             if (scanned.equals("add") || scanned.equals("a")) {
@@ -29,7 +31,7 @@ public class ScannerProject {
                 }
 
             } else if (scanned.equals("complete") || scanned.equals("c")) {
-                myList.change(scan.nextInt());
+                myList.change(scan.nextInt()-1);
             } else if (scanned.equals("help") || scanned.equals("h")) {
                 System.out.println("CLI Todo application");
                 System.out.println("====================\n");
@@ -56,7 +58,7 @@ public class ScannerProject {
         }
         String savefile = myList.converttoList();
         System.out.println(savefile);
-//        getFileInfo();
+        Putintofile(myList);
 
     }
 
@@ -72,6 +74,54 @@ public class ScannerProject {
             System.exit(0);
         }
         return null;
+    }
+    private void Getfromfile(){
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("C:/Users/Zoltán/Desktop/test/list.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println("This line is read from file:" + line);
+                // reading the next line
+                myList.addToDoItem(convertlineFile(line));
+                line = br.readLine();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void Putintofile(TodoList content){
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter("C:/Users/Zoltán/Desktop/test/list.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+//            bw.write(content);
+            for(int i =0; i<content.size(); i++) {
+                bw.write(myList.converttoLines(i));
+                bw.newLine();
+            }
+                // close up and flush
+                bw.flush();
+                bw.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    public static ToDoItems convertlineFile(String line){
+        String a[] = line.split("  ", 4);
+        String aa = a[0];
+        String cc = a[3];
+        return new ToDoItems(cc, aa);
     }
 
 
