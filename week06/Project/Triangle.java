@@ -10,23 +10,36 @@ public class Triangle extends JPanel {
     public void paintComponent (Graphics graphics) {
         super.paintComponent(graphics);
         requestFocus();
-        int[] cornerA = new int[]{0, 0};
-        int[] cornerB = new int[]{250, 433};
-        int[] cornerC = new int[]{500, 0};
+
+
+//        - - - - - - The base triangle - - - - - - -
+        int a = 256;
+        int shiftx =20 ;
+        int shifty =20 ;
+        int m = (int)Math.round(a*Math.sqrt(3)/2);
+
+
+//        - - - - - Drawing and the frame triangle the base triangle - - - - - -
+        int[] cornerA = new int[]{0+shiftx, 0+shifty};
+        int[] cornerB = new int[]{a+shiftx, 2*m+shifty};
+        int[] cornerC = new int[]{2*a+shiftx, 0 + shifty};
+
         graphics.drawLine(cornerA[0], cornerA[1], cornerB[0], cornerB[1]);
         graphics.drawLine(cornerA[0], cornerA[1], cornerC[0], cornerC[1]);
         graphics.drawLine(cornerC[0], cornerC[1], cornerB[0], cornerB[1]);
 
+        graphics.drawLine(a+shiftx,shifty, a/2+shiftx, m + shifty);
+        graphics.drawLine(a+shiftx,shifty, a+a/2+shiftx, m+shifty);
+        graphics.drawLine(a/2+shiftx, m + shifty,a+a/2+shiftx, m+shifty);
 
-        graphics.drawLine(250, 0, 125, 216);
-        graphics.drawLine(250, 0, 375, 216);
-        graphics.drawLine(125, 216, 375, 216);
+//         - - - - - Calling the recursive function - - - - - - -
 
-        drawTriangles(graphics, new int[]{250, 0, 216, 250});
+        drawTriangles(graphics, new int[]{a+shiftx, 0+shifty, m, a});
 
     }
+//   - - - - - The triangle drawing function - - - - - - -
     private void drawTriangles(Graphics graphics, int[] coordinates) {
-//        int[] coordinates = new int[]{250, 0, 216};
+
 
         graphics.drawLine(calculateCoordinateA(coordinates)[0], calculateCoordinateA(coordinates)[1], calculateCoordinateB(coordinates)[0], calculateCoordinateB(coordinates)[1]);
         graphics.drawLine(calculateCoordinateA(coordinates)[0], calculateCoordinateA(coordinates)[1], calculateCoordinateC(coordinates)[0], calculateCoordinateC(coordinates)[1]);
@@ -39,7 +52,7 @@ public class Triangle extends JPanel {
         graphics.drawLine(calculateCoordinateA(coordinates)[4], calculateCoordinateA(coordinates)[5], calculateCoordinateB(coordinates)[4], calculateCoordinateB(coordinates)[5]);
         graphics.drawLine(calculateCoordinateA(coordinates)[4], calculateCoordinateA(coordinates)[5], calculateCoordinateC(coordinates)[4], calculateCoordinateC(coordinates)[5]);
         graphics.drawLine(calculateCoordinateB(coordinates)[4], calculateCoordinateB(coordinates)[5], calculateCoordinateC(coordinates)[4], calculateCoordinateC(coordinates)[5]);
-        if (coordinates[2] > 2) {
+        if (coordinates[2] > 25) {
             drawTriangles(graphics, getCoordinatesone(coordinates));
             drawTriangles(graphics, getCoordinatestwo(coordinates));
             drawTriangles(graphics, getCoordinatesthree(coordinates));
@@ -48,7 +61,7 @@ public class Triangle extends JPanel {
         }
     }
 
-
+// - - - - - The calculators for the coordinates - - - - - -
     private int[] calculateCoordinateA(int[] coordinates){
         int[] cornerA = new int[]{
                 coordinates[0] - coordinates[3]/2, coordinates[1],
@@ -80,6 +93,9 @@ public class Triangle extends JPanel {
         return cornerC;
 
     }
+
+//    - - - - - Getting the new coordinates for the triangles - - - - - - -
+
     private int[] getCoordinatesone(int[] cord){
         int[] a = calculateCoordinateA(cord);
         int[] result = new int[4];
