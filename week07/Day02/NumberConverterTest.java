@@ -1,7 +1,7 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+
 
 public class NumberConverterTest {
     @Test
@@ -49,10 +49,7 @@ public class NumberConverterTest {
     public void testForThirthynine(){
         assertEquals("XXXIX", NumberConverter.arabicToRoman(39));
     }
-    @Test
-    public void testForThousandFivehunderedTwentyTwo(){
-        assertEquals("MDXXII", NumberConverter.arabicToRoman(1522));
-    }
+
     @Test
     public void testForThreethousandFourhunderedThirtyTwo(){
         assertEquals("MMMCDXXXII", NumberConverter.arabicToRoman(3432));
