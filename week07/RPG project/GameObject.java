@@ -28,4 +28,37 @@ public class GameObject {
             graphics.drawImage(image, posX, posY, null);
         }
     }
+
+    public void move(int x, int y){
+        posX += x*72;
+        posY += y*72;
+
+    }
+
+    public void move(int x, int y, String filename){
+        posX += x*72;
+        posY += y*72;
+        try {
+            image = ImageIO.read(new File(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
 }

@@ -1,23 +1,85 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
+import static java.awt.event.KeyEvent.VK_DOWN;
 
 /**
  * Created by Zoltán on 2016.12.07..
  */
 
-public class Board extends JPanel{
+public class Board extends JPanel implements KeyListener{
+
+    Map mapOne = new Map();
+    int heroPosX;
+    int heroPosY;
+
+    String heroDownImg = "images/hero-down.png";
+    String heroUpImg = "images/hero-up.png";
+    String heroLeftImg = "images/hero-left.png";
+    String heroRightImg = "images/hero-right.png";
+    String imageDirection = heroDownImg;
+
+    Hero mainHero = new Hero(imageDirection, heroPosX, heroPosY);
+
 
     public Board() {
 
+        addKeyListener(this);
         setPreferredSize(new Dimension(900, 800));
         setVisible(true);
+
+//        addKeyListener(new MovementListener());
+
+    }
+    public void addNotify() {
+        super.addNotify();
+        requestFocus();
     }
 
     @Override
     public void paint(Graphics graphics){
-        Map mapOne = new Map();
-        super.paint(graphics);
+
         mapOne.draw(graphics);
+        mainHero.draw(graphics);
+
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+
+        if (keyCode == KeyEvent.VK_LEFT) {
+            mainHero.move(-1, 0, heroLeftImg);
+
+        }
+
+        if (keyCode == KeyEvent.VK_RIGHT) {
+            mainHero.move(1, 0, heroRightImg);
+
+        }
+
+        if (keyCode == KeyEvent.VK_UP) {
+            mainHero.move(0, -1, heroUpImg);
+
+        }
+
+        if (keyCode == KeyEvent.VK_DOWN) {
+            mainHero.move(0, 1, heroDownImg);
+
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+        }
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
 }

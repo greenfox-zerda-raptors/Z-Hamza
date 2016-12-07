@@ -3,7 +3,13 @@
  */
 public class Hero extends GameObject {
 
+
     public Hero(int posX, int posY) {
+
         super("images/hero-down.png", posX, posY);
     }
+    public Hero(String image, int posX, int posY){
+        super(image, posX, posY);
+    }
+
 }
