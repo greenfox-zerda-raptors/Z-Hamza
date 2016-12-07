@@ -35,14 +35,17 @@ public class GameObject {
 
     }
 
-    public void move(int x, int y, String filename){
-        posX += x*72;
-        posY += y*72;
-        try {
-            image = ImageIO.read(new File(filename));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void move(int x, int y, String filename, int whatIsIt){
+
+        if(whatIsIt == 1) {
+            posX += x * 72;
+            posY += y * 72;
         }
+            try {
+                image = ImageIO.read(new File(filename));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
     }
@@ -60,5 +63,8 @@ public class GameObject {
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+    public String getPosXandY(){
+        return getPosX()/72 + " " + getPosY()/72;
     }
 }

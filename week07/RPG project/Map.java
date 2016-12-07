@@ -7,20 +7,22 @@ import java.util.ArrayList;
 public class Map {
 
     ArrayList<GameObject> tileField;
+    int[][] levelOne = new int[][]{
+            {1, 1, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 1, 0, 1, 0, 1, 0, 0, 1},
+            {1, 0, 0, 0, 1, 0, 1, 0, 0, 1},
+            {1, 1, 1, 1, 1, 0, 1, 1, 1, 1},
+            {0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
+            {1, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+            {1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
+            {1, 1, 1, 1, 1, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
+            {1, 1, 1, 0, 1, 0, 0, 1, 0, 1},
+            {1, 0, 1, 0, 1, 0, 1, 1, 1, 1}
+    };
+
     public Map() {
-        int[][] levelOne = new int[][]{
-                {1, 1, 1, 0, 1, 0, 1, 1, 1, 1},
-                {1, 1, 1, 0, 1, 0, 1, 0, 0, 1},
-                {1, 0, 0, 0, 1, 0, 1, 0, 0, 1},
-                {1, 1, 1, 1, 1, 0, 1, 1, 1, 1},
-                {0, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-                {1, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-                {1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
-                {1, 1, 1, 1, 1, 0, 0, 1, 0, 1},
-                {1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
-                {1, 1, 1, 0, 1, 0, 0, 1, 0, 1},
-                {1, 0, 1, 0, 1, 0, 1, 1, 1, 1}
-        };
+
 
         tileField = new ArrayList<GameObject>();
         for (int i = 0; i < 11; i++) {
@@ -29,8 +31,6 @@ public class Map {
                     tileField.add(new Floor(j, i));
                 } else if (levelOne[i][j] == 0) {
                     tileField.add(new Wall(j, i));
-                } else if (levelOne[i][j] == 2) {
-                    tileField.add(new Hero(j, i));
                 }
             }
         }
@@ -40,6 +40,14 @@ public class Map {
         for (GameObject tile : tileField) {
             tile.draw(graphics);
         }
+    }
+    public int whatIsIt(int xPos, int yPos){
+        try {
+            return levelOne[xPos][yPos];
+        }catch (ArrayIndexOutOfBoundsException e){
+            return 0;
+        }
+
     }
 
 }

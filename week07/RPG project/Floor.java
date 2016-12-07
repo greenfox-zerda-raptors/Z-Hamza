@@ -3,9 +3,9 @@
  */
 
 
-public class Floor extends GameObject {
+public class Floor extends Tile {
 
     public Floor(int posX, int posY) {
-        super("images/floor.png", posX, posY);
+        super("images/floor.png", posX, posY, true);
     }
 }

@@ -13,6 +13,7 @@ import static java.awt.event.KeyEvent.VK_DOWN;
 public class Board extends JPanel implements KeyListener{
 
     Map mapOne = new Map();
+
     int heroPosX;
     int heroPosY;
 
@@ -49,25 +50,31 @@ public class Board extends JPanel implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_LEFT) {
-            mainHero.move(-1, 0, heroLeftImg);
+            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72,mainHero.getPosX()/72 -1);
+            mainHero.move(-1, 0, heroLeftImg, dummy);
+
 
         }
 
         if (keyCode == KeyEvent.VK_RIGHT) {
-            mainHero.move(1, 0, heroRightImg);
+            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72,mainHero.getPosX()/72+1);
+                mainHero.move(1, 0, heroRightImg, dummy);
 
         }
 
         if (keyCode == KeyEvent.VK_UP) {
-            mainHero.move(0, -1, heroUpImg);
+            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72-1,mainHero.getPosX()/72);
+            mainHero.move(0, -1, heroUpImg, dummy);
 
         }
 
         if (keyCode == KeyEvent.VK_DOWN) {
-            mainHero.move(0, 1, heroDownImg);
+            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72+1,mainHero.getPosX()/72);
+            mainHero.move(0, 1, heroDownImg, dummy);
 
         }
         repaint();
