@@ -41,9 +41,19 @@ public class Map {
             tile.draw(graphics);
         }
     }
+
+    public ArrayList<GameObject> getTileField() {
+        return tileField;
+    }
+
     public int whatIsIt(int xPos, int yPos){
         try {
-            return levelOne[xPos][yPos];
+            if( levelOne[xPos][yPos] >= 1) {
+                return 1;
+            }
+            else{
+                return 0;
+            }
         }catch (ArrayIndexOutOfBoundsException e){
             return 0;
         }

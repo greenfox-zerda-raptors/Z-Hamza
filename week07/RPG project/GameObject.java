@@ -41,16 +41,16 @@ public class GameObject {
             posX += x * 72;
             posY += y * 72;
         }
-            try {
-                image = ImageIO.read(new File(filename));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            image = ImageIO.read(new File(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
     public int getPosX() {
-        return posX;
+        return posX/72;
     }
 
     public void setPosX(int posX) {
@@ -58,7 +58,7 @@ public class GameObject {
     }
 
     public int getPosY() {
-        return posY;
+        return posY/72;
     }
 
     public void setPosY(int posY) {

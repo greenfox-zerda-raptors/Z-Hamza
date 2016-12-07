@@ -17,6 +17,7 @@ public class Board extends JPanel implements KeyListener{
     int heroPosX;
     int heroPosY;
 
+    String skeletonImg = "images/skeleton.png";
     String heroDownImg = "images/hero-down.png";
     String heroUpImg = "images/hero-up.png";
     String heroLeftImg = "images/hero-left.png";
@@ -24,7 +25,7 @@ public class Board extends JPanel implements KeyListener{
     String imageDirection = heroDownImg;
 
     Hero mainHero = new Hero(imageDirection, heroPosX, heroPosY);
-
+    Skeleton skeletonOne = new Skeleton(skeletonImg, 7, 7);
 
     public Board() {
 
@@ -44,7 +45,9 @@ public class Board extends JPanel implements KeyListener{
     public void paint(Graphics graphics){
 
         mapOne.draw(graphics);
+        skeletonOne.draw(graphics);
         mainHero.draw(graphics);
+
 
     }
 
@@ -54,27 +57,30 @@ public class Board extends JPanel implements KeyListener{
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_LEFT) {
-            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72,mainHero.getPosX()/72 -1);
-            mainHero.move(-1, 0, heroLeftImg, dummy);
+            int whatKind = mapOne.whatIsIt(mainHero.getPosY(),mainHero.getPosX() -1);
+            mainHero.move(-1, 0, heroLeftImg, whatKind);
 
 
         }
 
         if (keyCode == KeyEvent.VK_RIGHT) {
-            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72,mainHero.getPosX()/72+1);
-                mainHero.move(1, 0, heroRightImg, dummy);
+            int whatKind = mapOne.whatIsIt(mainHero.getPosY(),mainHero.getPosX()+1);
+            mainHero.move(1, 0, heroRightImg, whatKind);
 
         }
 
         if (keyCode == KeyEvent.VK_UP) {
-            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72-1,mainHero.getPosX()/72);
-            mainHero.move(0, -1, heroUpImg, dummy);
+            int whatKind = mapOne.whatIsIt(mainHero.getPosY()-1,mainHero.getPosX());
+            mainHero.move(0, -1, heroUpImg, whatKind);
 
         }
 
         if (keyCode == KeyEvent.VK_DOWN) {
-            int dummy = mapOne.whatIsIt(mainHero.getPosY()/72+1,mainHero.getPosX()/72);
-            mainHero.move(0, 1, heroDownImg, dummy);
+            int whatKind = mapOne.whatIsIt(mainHero.getPosY()+1,mainHero.getPosX());
+            mainHero.move(0, 1, heroDownImg, whatKind);
+
+        }
+        if( keyCode ==KeyEvent.VK_SPACE) {
 
         }
         repaint();
@@ -83,7 +89,7 @@ public class Board extends JPanel implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
 
-        }
+    }
     @Override
     public void keyReleased(KeyEvent e) {
 
