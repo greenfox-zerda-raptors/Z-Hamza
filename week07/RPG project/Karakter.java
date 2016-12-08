@@ -31,7 +31,7 @@ public abstract class Karakter extends GameObject {
         this.isMoveable = false;
     }
 
-    public String[] writeStatt(){
+    public String[] writeStat(){
         String[] result = new String[]{
                 this.getClass().getSimpleName(),
                 "",
@@ -44,14 +44,14 @@ public abstract class Karakter extends GameObject {
 //    - - - - Graphics write out - - - - -
     public void writeOut(Graphics graphics, int place){
             for(int i = 0; i < 5; i++){
-                graphics.drawString(writeStatt()[i], 750, 100 + place * 120 + 20*i);
+                graphics.drawString(writeStat()[i], 750, 100 + place * 120 + 20*i);
             }
     }
 
 
 
 // - - - - - - The figth - - - - - - - -
-    public void attack(Karakter attacker, Karakter defender) {
+    public void fight(Karakter attacker, Karakter defender) {
 
         int spAtt = attacker.getStrikePoint();
         int spDef = defender.getStrikePoint();
@@ -59,14 +59,57 @@ public abstract class Karakter extends GameObject {
         int dpDef = defender.getDefensePoint();
         int currentHPAtt = attacker.getCurrentHealthPoint();
         int currentHPDef = defender.getCurrentHealthPoint();
+        int damageAtt;
+        int damageDef;
 
-        int damageAtt = spAtt - dpDef;
-        int damageDef = spDef - dpAtt;
+        if(spAtt - dpDef > 0) {
+            damageAtt = spAtt - dpDef;
+        }else{
+            damageAtt = 0;
+        }
+        if(spDef - dpAtt > 0) {
+            damageDef = spDef - dpAtt;
+        }else{
+            damageDef = 0;
+        }
 
-        attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
-        defender.setCurrentHealthPoint(currentHPDef - damageDef);
+        if(checkifDead(attacker) == false && checkifDead(defender) == false) {
+            defender.setCurrentHealthPoint(currentHPDef - damageAtt);
+            attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
+        }else if(checkifDead(attacker) == true || checkifDead(defender) == true){
+            if(checkifDead(attacker)){
+                attacker.setAlive(false);
+                winFight(attacker);
+            }
+            else if(checkifDead(defender)){
+                attacker.setAlive(false);
+            }
+        }
 
     }
+
+
+    public boolean checkifDead(Karakter karakter){
+        if(karakter.getCurrentHealthPoint() <= 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void winFight(Karakter karakter){
+        gainHealth(karakter, 5);
+
+    }
+    public void gainHealth(Karakter karakter, int number){
+        karakter.setCurrentHealthPoint(karakter.getCurrentHealthPoint() + number);
+    }
+
+
+
+
+
 
 //  - - - - - - - Getters and setters - - - -
     public boolean isMoveable() {

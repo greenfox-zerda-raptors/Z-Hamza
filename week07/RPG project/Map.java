@@ -8,7 +8,7 @@ import java.util.Random;
 public class Map {
 
     ArrayList<GameObject> tileField;
-    ArrayList<Skeleton> Skeletons = new ArrayList<>();
+    ArrayList<Skeleton> Mobs = new ArrayList<>();
     Boss levelBoss;
 
     int[][] levelOne = new int[][]{
@@ -46,7 +46,7 @@ public class Map {
         for (GameObject tile : tileField) {
             tile.draw(graphics);
         }
-        for(GameObject iskeleton : Skeletons){
+        for(GameObject iskeleton : Mobs){
             iskeleton.draw(graphics);
         }
         levelBoss.draw(graphics);
@@ -77,7 +77,7 @@ public class Map {
 
 // - - - - -  Creating the random enemies - - - - - - -
 
-    public int getnumberofFloors(int[][] mapLayout){
+    public int getNumberofFloors(int[][] mapLayout){
         int number = 0;
 
         for (int i = 0; i < mapLayout.length; i++) {
@@ -91,7 +91,7 @@ public class Map {
     }
     public int[][] getViableCoords(int[][] mapLayout){
         int counter = 0;
-        int numberofFloors = getnumberofFloors(levelOne);
+        int numberofFloors = getNumberofFloors(levelOne);
         int[][] result = new int[numberofFloors][2];
         for(int i = 0; i < levelOne.length; i++){
             for(int j = 0; j<levelOne[0].length; j++){
@@ -112,22 +112,22 @@ public class Map {
         Random rnd = new Random();
         int[][] coord = getViableCoords(levelOne);
         for(int i = 0; i < numberofEnemies; i++){
-            int random = rnd.nextInt(getnumberofFloors(levelOne));
-            Skeletons.add(new Skeleton("images/skeleton.png", coord[random][0], coord[random][1]));
+            int random = rnd.nextInt(getNumberofFloors(levelOne));
+            Mobs.add(new Skeleton("images/skeleton.png", coord[random][0], coord[random][1]));
 
         }
-        int random = rnd.nextInt(getnumberofFloors(levelOne)+1);
+        int random = rnd.nextInt(getNumberofFloors(levelOne)+1);
         this.levelBoss = new Boss("images/boss.png", coord[random][0], coord[random][1]);
     }
 
 
     public boolean isThereEnemy(int x, int y){
 
-        int[][] coord = new int[Skeletons.size()][2];
+        int[][] coord = new int[Mobs.size()][2];
         int counter = 0;
         for(int i = 0; i < coord.length; i ++){
-            Skeletons.get(i).getPosY();
-            if(Skeletons.get(i).getPosX() == x && Skeletons.get(i).getPosY() == y){
+            Mobs.get(i).getPosY();
+            if(Mobs.get(i).getPosX() == x && Mobs.get(i).getPosY() == y){
                 return true;
             }else if(levelBoss.getPosX() == x && levelBoss.getPosY() == y){
                 return true;
@@ -138,10 +138,10 @@ public class Map {
     }
     public Enemy findEnemy(int x, int y){
         int number =0;
-        for(int i = 0; i < Skeletons.size(); i ++){
-            if(Skeletons.get(i).getPosX() == x && Skeletons.get(i).getPosY() == y){
+        for(int i = 0; i < Mobs.size(); i ++){
+            if(Mobs.get(i).getPosX() == x && Mobs.get(i).getPosY() == y){
                 number = i;
-                return Skeletons.get(number);
+                return Mobs.get(number);
             }
             else if(levelBoss.getPosX() == x && levelBoss.getPosY() == y){
                 return levelBoss;
@@ -151,9 +151,25 @@ public class Map {
         return null;
 
     }
+    public int getSkeletonNumber(int x, int y){
+        int number =0;
+        for(int i = 0; i < Mobs.size(); i ++){
+            if(Mobs.get(i).getPosX() == x && Mobs.get(i).getPosY() == y){
+                number = i;
+                return number;
+            }
+        }
 
-    public ArrayList<Skeleton> getSkeletons() {
-        return Skeletons;
+        return 0;
+
+    }
+
+    public void enemyDeath(int number){
+        Mobs.remove(number);
+    }
+
+    public ArrayList<Skeleton> getMobs() {
+        return Mobs;
     }
 
     public Boss getLevelBoss() {

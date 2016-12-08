@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-
-import static java.awt.event.KeyEvent.VK_DOWN;
 
 /**
  * Created by Zoltán on 2016.12.07..
@@ -89,11 +86,16 @@ public class Board extends JPanel implements KeyListener{
             mainHero.move(0, 1, heroDownImg, whatKind);
 
         }
-        if( keyCode ==KeyEvent.VK_SPACE) {
-            System.out.println("Strike");
-            if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
-                mainHero.attack(mainHero, mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()));
 
+        if( keyCode ==KeyEvent.VK_SPACE) {
+
+            if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
+                mainHero.fight(mainHero, mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()));
+
+
+                if(mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).getCurrentHealthPoint() <= 0){
+                    mapOne.enemyDeath(mapOne.getSkeletonNumber(mainHero.getPosX(), mainHero.getPosY()));
+                }
             }
         }
         repaint();
@@ -107,5 +109,6 @@ public class Board extends JPanel implements KeyListener{
     public void keyReleased(KeyEvent e) {
 
     }
+
 
 }
