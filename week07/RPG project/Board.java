@@ -22,18 +22,17 @@ public class Board extends JPanel implements KeyListener{
     String heroUpImg = "images/hero-up.png";
     String heroLeftImg = "images/hero-left.png";
     String heroRightImg = "images/hero-right.png";
-    String imageDirection = heroDownImg;
+    String bossImg = "images/boss.png";
 
-    Hero mainHero = new Hero(imageDirection, heroPosX, heroPosY);
-    Skeleton skeletonOne = new Skeleton(skeletonImg, 7, 7);
+
+    Hero mainHero = new Hero(heroDownImg, heroPosX, heroPosY);
+
 
     public Board() {
 
         addKeyListener(this);
         setPreferredSize(new Dimension(900, 800));
         setVisible(true);
-
-//        addKeyListener(new MovementListener());
 
     }
     public void addNotify() {
@@ -45,9 +44,7 @@ public class Board extends JPanel implements KeyListener{
     public void paint(Graphics graphics){
 
         mapOne.draw(graphics);
-        skeletonOne.draw(graphics);
         mainHero.draw(graphics);
-
 
     }
 
@@ -81,7 +78,13 @@ public class Board extends JPanel implements KeyListener{
 
         }
         if( keyCode ==KeyEvent.VK_SPACE) {
+            System.out.println("Strike");
+            if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
+                System.out.println("Malacka");
+                System.out.println("Hero stats: \n" + mainHero.getStats());
+                System.out.println("Enemy stats: \n" + mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).getStats());
 
+            }
         }
         repaint();
     }
