@@ -108,13 +108,13 @@ public class Map {
 
 
     public void createEnemies(int numberofEnemies){
-        int counter = 0;
+
         Random rnd = new Random();
         int[][] coord = getViableCoords(levelOne);
         for(int i = 0; i < numberofEnemies; i++){
             int random = rnd.nextInt(getnumberofFloors(levelOne));
             Skeletons.add(new Skeleton("images/skeleton.png", coord[random][0], coord[random][1]));
-            counter ++;
+
         }
         int random = rnd.nextInt(getnumberofFloors(levelOne)+1);
         this.levelBoss = new Boss("images/boss.png", coord[random][0], coord[random][1]);

@@ -43,8 +43,20 @@ public class Board extends JPanel implements KeyListener{
     @Override
     public void paint(Graphics graphics){
 
+
         mapOne.draw(graphics);
         mainHero.draw(graphics);
+
+//        - - - - - The info list on the right side - - - - - - -
+        graphics.setColor(Color.WHITE); // White rectangle to "refresh" the details
+        graphics.fillRect(720, 0, 900, 800);
+
+        graphics.setColor(Color.BLACK);
+        mainHero.writeOut(graphics, 0);
+
+        if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
+            mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).writeOut(graphics, 1);
+        }
 
     }
 
@@ -80,9 +92,7 @@ public class Board extends JPanel implements KeyListener{
         if( keyCode ==KeyEvent.VK_SPACE) {
             System.out.println("Strike");
             if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
-                System.out.println("Malacka");
-                System.out.println("Hero stats: \n" + mainHero.getStats());
-                System.out.println("Enemy stats: \n" + mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).getStats());
+                mainHero.attack(mainHero, mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()));
 
             }
         }

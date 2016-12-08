@@ -1,3 +1,4 @@
+import java.awt.*;
 
 /**
  * Created by Zoltán on 2016.12.05..
@@ -30,22 +31,42 @@ public abstract class Karakter extends GameObject {
         this.isMoveable = false;
     }
 
-    public String getStats(){
-
-        String result = "\n" + "HP: " + getCurrentHealthPoint() +
-                " / " +getHealthPoint() + "\n" + "SP: "
-                + getStrikePoint() + "\n" + "DP: " +
-                getDefensePoint() + "\n" ;
-
+    public String[] writeStatt(){
+        String[] result = new String[]{
+                this.getClass().getSimpleName(),
+                "",
+                "HP: " + getCurrentHealthPoint() + " / " + getHealthPoint(),
+                "SP: " + getStrikePoint(),
+                "DP: " + getDefensePoint(),
+        };
         return result;
     }
-
-    public void fight(Karakter one, Karakter two){
-
+//    - - - - Graphics write out - - - - -
+    public void writeOut(Graphics graphics, int place){
+            for(int i = 0; i < 5; i++){
+                graphics.drawString(writeStatt()[i], 750, 100 + place * 120 + 20*i);
+            }
     }
 
 
 
+// - - - - - - The figth - - - - - - - -
+    public void attack(Karakter attacker, Karakter defender) {
+
+        int spAtt = attacker.getStrikePoint();
+        int spDef = defender.getStrikePoint();
+        int dpAtt = attacker.getDefensePoint();
+        int dpDef = defender.getDefensePoint();
+        int currentHPAtt = attacker.getCurrentHealthPoint();
+        int currentHPDef = defender.getCurrentHealthPoint();
+
+        int damageAtt = spAtt - dpDef;
+        int damageDef = spDef - dpAtt;
+
+        attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
+        defender.setCurrentHealthPoint(currentHPDef - damageDef);
+
+    }
 
 //  - - - - - - - Getters and setters - - - -
     public boolean isMoveable() {

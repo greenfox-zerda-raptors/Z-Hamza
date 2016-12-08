@@ -10,7 +10,7 @@ public class Skeleton extends Enemy {
 
     public Skeleton(String filename, int posX, int posY) {
         super(filename, posX, posY, false, calculateStats(1));
-        
+
     }
 
     private static int[] calculateStats(int charLevel) {
