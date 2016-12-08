@@ -32,8 +32,16 @@ public abstract class Karakter extends GameObject {
     }
 
     public String[] writeStat(){
+
+        String status;
+        if(this.getCurrentHealthPoint() <= 0){
+            status = "(dead)";
+        }else {
+            status = "(alive)";
+        }
+
         String[] result = new String[]{
-                this.getClass().getSimpleName(),
+                this.getClass().getSimpleName() +"  "+ status,
                 "",
                 "HP: " + getCurrentHealthPoint() + " / " + getHealthPoint(),
                 "SP: " + getStrikePoint(),
@@ -41,16 +49,16 @@ public abstract class Karakter extends GameObject {
         };
         return result;
     }
-//    - - - - Graphics write out - - - - -
+    //    - - - - Graphics write out - - - - -
     public void writeOut(Graphics graphics, int place){
-            for(int i = 0; i < 5; i++){
-                graphics.drawString(writeStat()[i], 750, 100 + place * 120 + 20*i);
-            }
+        for(int i = 0; i < 5; i++){
+            graphics.drawString(writeStat()[i], 750, 100 + place * 120 + 20*i);
+        }
     }
 
 
 
-// - - - - - - The figth - - - - - - - -
+    // - - - - - - The figth - - - - - - - -
     public void fight(Karakter attacker, Karakter defender) {
 
         int spAtt = attacker.getStrikePoint();
@@ -72,20 +80,18 @@ public abstract class Karakter extends GameObject {
         }else{
             damageDef = 0;
         }
-
         if(checkifDead(attacker) == false && checkifDead(defender) == false) {
             defender.setCurrentHealthPoint(currentHPDef - damageAtt);
             attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
-        }else if(checkifDead(attacker) == true || checkifDead(defender) == true){
-            if(checkifDead(attacker)){
-                attacker.setAlive(false);
-                winFight(attacker);
-            }
-            else if(checkifDead(defender)){
-                attacker.setAlive(false);
-            }
         }
-
+        if(checkifDead(attacker)) {
+            attacker.setAlive(false);
+        }
+        if(checkifDead(defender)){
+            defender.setAlive(false);
+            defender.changeImage("images/skull.png");
+//            winFight(attacker);
+        }
     }
 
 
@@ -103,7 +109,11 @@ public abstract class Karakter extends GameObject {
 
     }
     public void gainHealth(Karakter karakter, int number){
-        karakter.setCurrentHealthPoint(karakter.getCurrentHealthPoint() + number);
+        if(karakter.getCurrentHealthPoint() + number > karakter.getHealthPoint()){
+            karakter.setCurrentHealthPoint(karakter.getHealthPoint());
+        }else{
+            karakter.setCurrentHealthPoint(karakter.getCurrentHealthPoint() + number);
+        }
     }
 
 
@@ -111,7 +121,7 @@ public abstract class Karakter extends GameObject {
 
 
 
-//  - - - - - - - Getters and setters - - - -
+    //  - - - - - - - Getters and setters - - - -
     public boolean isMoveable() {
         return isMoveable;
     }

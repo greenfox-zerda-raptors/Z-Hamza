@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 
 public class Board extends JPanel implements KeyListener{
 
-    Map mapOne = new Map();
+    Map currentMap = new Map();
 
     int heroPosX;
     int heroPosY;
@@ -41,7 +41,7 @@ public class Board extends JPanel implements KeyListener{
     public void paint(Graphics graphics){
 
 
-        mapOne.draw(graphics);
+        currentMap.draw(graphics);
         mainHero.draw(graphics);
 
 //        - - - - - The info list on the right side - - - - - - -
@@ -51,8 +51,8 @@ public class Board extends JPanel implements KeyListener{
         graphics.setColor(Color.BLACK);
         mainHero.writeOut(graphics, 0);
 
-        if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
-            mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).writeOut(graphics, 1);
+        if(currentMap.isThereEnemy(mainHero)){
+            currentMap.findEnemy(mainHero).writeOut(graphics, 1);
         }
 
     }
@@ -63,38 +63,38 @@ public class Board extends JPanel implements KeyListener{
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_LEFT) {
-            int whatKind = mapOne.whatIsIt(mainHero.getPosY(),mainHero.getPosX() -1);
+            int whatKind = currentMap.whatIsIt(mainHero.getPosY(),mainHero.getPosX() -1);
             mainHero.move(-1, 0, heroLeftImg, whatKind);
 
 
         }
 
         if (keyCode == KeyEvent.VK_RIGHT) {
-            int whatKind = mapOne.whatIsIt(mainHero.getPosY(),mainHero.getPosX()+1);
+            int whatKind = currentMap.whatIsIt(mainHero.getPosY(),mainHero.getPosX()+1);
             mainHero.move(1, 0, heroRightImg, whatKind);
 
         }
 
         if (keyCode == KeyEvent.VK_UP) {
-            int whatKind = mapOne.whatIsIt(mainHero.getPosY()-1,mainHero.getPosX());
+            int whatKind = currentMap.whatIsIt(mainHero.getPosY()-1,mainHero.getPosX());
             mainHero.move(0, -1, heroUpImg, whatKind);
 
         }
 
         if (keyCode == KeyEvent.VK_DOWN) {
-            int whatKind = mapOne.whatIsIt(mainHero.getPosY()+1,mainHero.getPosX());
+            int whatKind = currentMap.whatIsIt(mainHero.getPosY()+1,mainHero.getPosX());
             mainHero.move(0, 1, heroDownImg, whatKind);
 
         }
 
         if( keyCode ==KeyEvent.VK_SPACE) {
 
-            if(mapOne.isThereEnemy(mainHero.getPosX(), mainHero.getPosY())){
-                mainHero.fight(mainHero, mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()));
+            if(currentMap.isThereEnemy(mainHero)){
+                mainHero.fight(mainHero, currentMap.findEnemy(mainHero));
 
 
-                if(mapOne.findEnemy(mainHero.getPosX(), mainHero.getPosY()).getCurrentHealthPoint() <= 0){
-                    mapOne.enemyDeath(mapOne.getSkeletonNumber(mainHero.getPosX(), mainHero.getPosY()));
+                if(currentMap.findEnemy(mainHero).getCurrentHealthPoint() <= 0){
+                    currentMap.enemyDeath(mainHero);
                 }
             }
         }

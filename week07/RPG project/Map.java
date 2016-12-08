@@ -1,4 +1,9 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -124,7 +129,9 @@ public class Map {
     }
 
 
-    public boolean isThereEnemy(int x, int y){
+    public boolean isThereEnemy(Hero hero){
+        int x = getHeroPosXY(hero)[0];
+        int y = getHeroPosXY(hero)[1];
 
         int[][] coord = new int[Enemies.size()][2];
         int counter = 0;
@@ -134,10 +141,14 @@ public class Map {
                 return true;
             }
         }
-       return false;
+        return false;
 
     }
-    public Enemy findEnemy(int x, int y){
+    public Enemy findEnemy(Hero hero){
+
+        int x = getHeroPosXY(hero)[0];
+        int y = getHeroPosXY(hero)[1];
+
         int number =0;
         for(int i = 0; i < Enemies.size(); i ++){
             if(Enemies.get(i).getPosX() == x && Enemies.get(i).getPosY() == y){
@@ -149,7 +160,11 @@ public class Map {
         return null;
 
     }
-    public int getSkeletonNumber(int x, int y){
+    public int getSkeletonNumber(Hero hero){
+
+        int x = getHeroPosXY(hero)[0];
+        int y = getHeroPosXY(hero)[1];
+
         int number =0;
         for(int i = 0; i < Enemies.size(); i ++){
             if(Enemies.get(i).getPosX() == x && Enemies.get(i).getPosY() == y){
@@ -162,8 +177,15 @@ public class Map {
 
     }
 
-    public void enemyDeath(int number){
+    public void enemyDeath(Hero hero){
 
+        Enemies.get(getSkeletonNumber(hero));
+
+    }
+
+    public int[] getHeroPosXY(Hero hero){
+        int[] posXY = new int[]{hero.getPosX(), hero.getPosY()};
+        return posXY;
     }
 
     public ArrayList<Enemy> getMobs() {

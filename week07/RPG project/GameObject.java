@@ -10,14 +10,16 @@ import java.io.IOException;
  */
 public class GameObject {
 
+    String fileName;
     BufferedImage image;
     int posX, posY;
 
     public GameObject(String filename, int posX, int posY) {
         this.posX = posX * 72;
         this.posY = posY * 72;
+        this.fileName = filename;
         try {
-            image = ImageIO.read(new File(filename));
+            image = ImageIO.read(new File(fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,6 +52,15 @@ public class GameObject {
 
 
     }
+    public void changeImage(String filename){
+        this.fileName = filename;
+        try {
+            image = ImageIO.read(new File(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getPosX() {
         return posX/72;
     }
@@ -65,7 +76,15 @@ public class GameObject {
     public void setPosY(int posY) {
         this.posY = posY;
     }
-    public String getPosXandY(){
-        return getPosX()/72 + " " + getPosY()/72;
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
