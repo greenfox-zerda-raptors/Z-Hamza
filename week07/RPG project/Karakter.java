@@ -22,8 +22,6 @@ public abstract class Karakter extends GameObject {
         this.currentHealthPoint = healthPoint;
         this.defensePoint = stats[1];
         this.strikePoint = stats[2];
-
-
     }
 
     public Karakter(String filename, int posX, int posY) {
@@ -52,6 +50,8 @@ public abstract class Karakter extends GameObject {
     //    - - - - Graphics write out - - - - -
     public void writeOut(Graphics graphics, int place){
         for(int i = 0; i < 5; i++){
+            if(i == 0){graphics.setFont(new Font("Courier New", Font.BOLD, 16));}
+            else{graphics.setFont(new Font("Courier New", Font.PLAIN, 12));}
             graphics.drawString(writeStat()[i], 750, 100 + place * 120 + 20*i);
         }
     }
@@ -83,6 +83,9 @@ public abstract class Karakter extends GameObject {
         if(checkifDead(attacker) == false && checkifDead(defender) == false) {
             defender.setCurrentHealthPoint(currentHPDef - damageAtt);
             attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
+            if(defender.getCurrentHealthPoint() <= 0) {
+                winFight(attacker);
+            }
         }
         if(checkifDead(attacker)) {
             attacker.setAlive(false);
@@ -90,7 +93,7 @@ public abstract class Karakter extends GameObject {
         if(checkifDead(defender)){
             defender.setAlive(false);
             defender.changeImage("images/skull.png");
-//            winFight(attacker);
+
         }
     }
 
@@ -108,6 +111,7 @@ public abstract class Karakter extends GameObject {
         gainHealth(karakter, 5);
 
     }
+
     public void gainHealth(Karakter karakter, int number){
         if(karakter.getCurrentHealthPoint() + number > karakter.getHealthPoint()){
             karakter.setCurrentHealthPoint(karakter.getHealthPoint());
@@ -116,54 +120,18 @@ public abstract class Karakter extends GameObject {
         }
     }
 
-
-
-
-
-
     //  - - - - - - - Getters and setters - - - -
-    public boolean isMoveable() {
-        return isMoveable;
-    }
-
-    public void setMoveable(boolean moveable) {
-        isMoveable = moveable;
-    }
-
-    public int getCharacterLevel() {
-        return characterLevel;
-    }
-
-    public void setCharacterLevel(int characterLevel) {
-        this.characterLevel = characterLevel;
-    }
 
     public int getHealthPoint() {
         return healthPoint;
-    }
-
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
     }
 
     public int getDefensePoint() {
         return defensePoint;
     }
 
-    public void setDefensePoint(int defensePoint) {
-        this.defensePoint = defensePoint;
-    }
-
     public int getStrikePoint() {
         return strikePoint;
-    }
-
-    public void setStrikePoint(int strikePoint) {
-        this.strikePoint = strikePoint;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
     }
 
     public void setAlive(boolean alive) {
@@ -177,4 +145,6 @@ public abstract class Karakter extends GameObject {
     public void setCurrentHealthPoint(int currentHealthPoint) {
         this.currentHealthPoint = currentHealthPoint;
     }
+
+
 }

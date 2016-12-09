@@ -187,9 +187,19 @@ public class Map {
         int[] posXY = new int[]{hero.getPosX(), hero.getPosY()};
         return posXY;
     }
-
-    public ArrayList<Enemy> getMobs() {
-        return Enemies;
+    public boolean areAllDead(){
+        int c = 0;
+        int size = Enemies.size();
+        for(int i = 0; i<size; i++){
+            if(Enemies.get(i).isAlive == false){
+                c++;
+            }
+        }
+        if(c == size){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Enemy getLevelBoss() {

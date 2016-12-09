@@ -18,8 +18,6 @@ public class Game extends JFrame {
 
         JPanel board = new Board();
         this.add(board);
-
-//        this.addKeyListener(new TestListener);
         this.pack();
         this.setLocationRelativeTo(null);
 

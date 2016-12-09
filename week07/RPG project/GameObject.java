@@ -32,15 +32,15 @@ public class GameObject {
         }
     }
 
-    public void move(int x, int y){
-        posX += x*72;
-        posY += y*72;
+    public void move(int x, int y) {
+        posX += x * 72;
+        posY += y * 72;
 
     }
 
-    public void move(int x, int y, String filename, int whatIsIt){
+    public void move(int x, int y, String filename, int whatIsIt) {
 
-        if(whatIsIt == 1) {
+        if (whatIsIt == 1) {
             posX += x * 72;
             posY += y * 72;
         }
@@ -52,7 +52,8 @@ public class GameObject {
 
 
     }
-    public void changeImage(String filename){
+
+    public void changeImage(String filename) {
         this.fileName = filename;
         try {
             image = ImageIO.read(new File(filename));
@@ -62,29 +63,11 @@ public class GameObject {
     }
 
     public int getPosX() {
-        return posX/72;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
+        return posX / 72;
     }
 
     public int getPosY() {
-        return posY/72;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+        return posY / 72;
     }
 }
+

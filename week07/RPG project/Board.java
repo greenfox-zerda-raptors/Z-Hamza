@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 
 public class Board extends JPanel implements KeyListener{
 
+    boolean gameStatus = true;
+    boolean gameWin = false;
     Map currentMap = new Map();
 
     int heroPosX;
@@ -28,7 +30,7 @@ public class Board extends JPanel implements KeyListener{
     public Board() {
 
         addKeyListener(this);
-        setPreferredSize(new Dimension(900, 800));
+        setPreferredSize(new Dimension(1000, 800));
         setVisible(true);
 
     }
@@ -46,13 +48,24 @@ public class Board extends JPanel implements KeyListener{
 
 //        - - - - - The info list on the right side - - - - - - -
         graphics.setColor(Color.WHITE); // White rectangle to "refresh" the details
-        graphics.fillRect(720, 0, 900, 800);
+        graphics.fillRect(720, 0, 1000, 800);
 
         graphics.setColor(Color.BLACK);
+//        graphics.setFont(new Font("Courier New", Font.PLAIN, 12));
         mainHero.writeOut(graphics, 0);
 
         if(currentMap.isThereEnemy(mainHero)){
             currentMap.findEnemy(mainHero).writeOut(graphics, 1);
+        }
+        if(gameStatus == false){
+            graphics.setColor(Color.RED);
+            graphics.setFont(new Font("Courier New", Font.BOLD, 70));
+            graphics.drawString("GAME OVER", 300, 350);
+        }
+        if(gameWin == true){
+            graphics.setColor(Color.GREEN);
+            graphics.setFont(new Font("Courier New", Font.BOLD, 70));
+            graphics.drawString("VICTORY", 300, 350);
         }
 
     }
@@ -61,44 +74,46 @@ public class Board extends JPanel implements KeyListener{
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
+        if(gameStatus == true) {
 
-        if (keyCode == KeyEvent.VK_LEFT) {
-            int whatKind = currentMap.whatIsIt(mainHero.getPosY(),mainHero.getPosX() -1);
-            mainHero.move(-1, 0, heroLeftImg, whatKind);
+            if (keyCode == KeyEvent.VK_LEFT) {
+                int whatKind = currentMap.whatIsIt(mainHero.getPosY(), mainHero.getPosX() - 1);
+                mainHero.move(-1, 0, heroLeftImg, whatKind);
+            }
+
+            if (keyCode == KeyEvent.VK_RIGHT) {
+                int whatKind = currentMap.whatIsIt(mainHero.getPosY(), mainHero.getPosX() + 1);
+                mainHero.move(1, 0, heroRightImg, whatKind);
+
+            }
+
+            if (keyCode == KeyEvent.VK_UP) {
+                int whatKind = currentMap.whatIsIt(mainHero.getPosY() - 1, mainHero.getPosX());
+                mainHero.move(0, -1, heroUpImg, whatKind);
+
+            }
+
+            if (keyCode == KeyEvent.VK_DOWN) {
+                int whatKind = currentMap.whatIsIt(mainHero.getPosY() + 1, mainHero.getPosX());
+                mainHero.move(0, 1, heroDownImg, whatKind);
+
+            }
+
+            if (keyCode == KeyEvent.VK_SPACE) {
+
+                if (currentMap.isThereEnemy(mainHero)) {
+                    mainHero.fight(mainHero, currentMap.findEnemy(mainHero));
 
 
-        }
-
-        if (keyCode == KeyEvent.VK_RIGHT) {
-            int whatKind = currentMap.whatIsIt(mainHero.getPosY(),mainHero.getPosX()+1);
-            mainHero.move(1, 0, heroRightImg, whatKind);
-
-        }
-
-        if (keyCode == KeyEvent.VK_UP) {
-            int whatKind = currentMap.whatIsIt(mainHero.getPosY()-1,mainHero.getPosX());
-            mainHero.move(0, -1, heroUpImg, whatKind);
-
-        }
-
-        if (keyCode == KeyEvent.VK_DOWN) {
-            int whatKind = currentMap.whatIsIt(mainHero.getPosY()+1,mainHero.getPosX());
-            mainHero.move(0, 1, heroDownImg, whatKind);
-
-        }
-
-        if( keyCode ==KeyEvent.VK_SPACE) {
-
-            if(currentMap.isThereEnemy(mainHero)){
-                mainHero.fight(mainHero, currentMap.findEnemy(mainHero));
-
-
-                if(currentMap.findEnemy(mainHero).getCurrentHealthPoint() <= 0){
-                    currentMap.enemyDeath(mainHero);
+                    if (currentMap.findEnemy(mainHero).getCurrentHealthPoint() <= 0) {
+                        currentMap.enemyDeath(mainHero);
+                    }
                 }
             }
         }
         repaint();
+        checkLoseGame();
+        checkWinGame();
     }
 
     @Override
@@ -109,6 +124,15 @@ public class Board extends JPanel implements KeyListener{
     public void keyReleased(KeyEvent e) {
 
     }
-
+    public void checkLoseGame(){
+        if(mainHero.isAlive == false){
+            this.gameStatus = false;
+        }
+    }
+    public void checkWinGame(){
+        if(currentMap.areAllDead() == true){
+            this.gameWin = true;
+        }
+    }
 
 }
