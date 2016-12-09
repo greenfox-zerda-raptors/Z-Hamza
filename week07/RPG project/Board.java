@@ -11,7 +11,8 @@ public class Board extends JPanel implements KeyListener{
 
     boolean gameStatus = true;
     boolean gameWin = false;
-    Map currentMap = new Map();
+    int mapLevel = 1;
+    Map currentMap = new Map(mapLevel);
 
     int heroPosX;
     int heroPosY;
@@ -74,6 +75,12 @@ public class Board extends JPanel implements KeyListener{
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
+        if(gameWin == true){
+            System.out.println("aaaaa");
+            if(keyCode == KeyEvent.VK_ENTER){
+                changeMap(1);
+            }
+        }
         if(gameStatus == true) {
 
             if (keyCode == KeyEvent.VK_LEFT) {
@@ -133,6 +140,13 @@ public class Board extends JPanel implements KeyListener{
         if(currentMap.areAllDead() == true){
             this.gameWin = true;
         }
+    }
+    public void changeMap(int number){
+        this.mapLevel = mapLevel + number;
+        this.currentMap = new Map(mapLevel);
+        this.gameWin = false;
+        this.gameStatus = true;
+
     }
 
 }
