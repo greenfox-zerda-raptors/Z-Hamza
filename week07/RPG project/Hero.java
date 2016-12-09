@@ -30,7 +30,9 @@ public class Hero extends Karakter {
     }
 
     public void levelUp(){
-
+        this.setStrikePoint(getStrikePoint() + 6);
+        this.setHealthPoint(getHealthPoint() + 10);
+        this.setDefensePoint(getDefensePoint() + 2);
     }
 
 

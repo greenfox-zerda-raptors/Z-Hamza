@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Created by Zoltán on 2016.12.07..
+ * 
  */
 public class GameObject {
 
@@ -66,8 +67,16 @@ public class GameObject {
         return posX / 72;
     }
 
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
     public int getPosY() {
         return posY / 72;
     }
-}
 
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+}

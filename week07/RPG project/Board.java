@@ -52,7 +52,7 @@ public class Board extends JPanel implements KeyListener{
         graphics.fillRect(720, 0, 1000, 800);
 
         graphics.setColor(Color.BLACK);
-//        graphics.setFont(new Font("Courier New", Font.PLAIN, 12));
+
         mainHero.writeOut(graphics, 0);
 
         if(currentMap.isThereEnemy(mainHero)){
@@ -76,7 +76,6 @@ public class Board extends JPanel implements KeyListener{
 
         int keyCode = e.getKeyCode();
         if(gameWin == true){
-            System.out.println("aaaaa");
             if(keyCode == KeyEvent.VK_ENTER){
                 changeMap(1);
             }
@@ -142,11 +141,16 @@ public class Board extends JPanel implements KeyListener{
         }
     }
     public void changeMap(int number){
+
+        this.currentMap.getMapArr().addRandomMap();
+
         this.mapLevel = mapLevel + number;
         this.currentMap = new Map(mapLevel);
         this.gameWin = false;
         this.gameStatus = true;
-
+        this.mainHero.setPosX(0);
+        this.mainHero.setPosY(0);
+        mainHero.levelUp();
     }
 
 }

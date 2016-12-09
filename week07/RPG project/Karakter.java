@@ -40,7 +40,7 @@ public abstract class Karakter extends GameObject {
 
         String[] result = new String[]{
                 this.getClass().getSimpleName() +"  "+ status,
-                "",
+                "lvl: " + getCharacterLevel(),
                 "HP: " + getCurrentHealthPoint() + " / " + getHealthPoint(),
                 "SP: " + getStrikePoint(),
                 "DP: " + getDefensePoint(),
@@ -80,7 +80,7 @@ public abstract class Karakter extends GameObject {
         }else{
             damageDef = 0;
         }
-        if(checkifDead(attacker) == false && checkifDead(defender) == false) {
+        if(!checkifDead(attacker) && !checkifDead(defender)) {
             defender.setCurrentHealthPoint(currentHPDef - damageAtt);
             attacker.setCurrentHealthPoint(currentHPAtt - damageDef);
             if(defender.getCurrentHealthPoint() <= 0) {
@@ -146,5 +146,35 @@ public abstract class Karakter extends GameObject {
         this.currentHealthPoint = currentHealthPoint;
     }
 
+    public boolean isMoveable() {
+        return isMoveable;
+    }
 
+    public void setMoveable(boolean moveable) {
+        isMoveable = moveable;
+    }
+
+    public int getCharacterLevel() {
+        return characterLevel;
+    }
+
+    public void setCharacterLevel(int characterLevel) {
+        this.characterLevel = characterLevel;
+    }
+
+    public void setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+    }
+
+    public void setDefensePoint(int defensePoint) {
+        this.defensePoint = defensePoint;
+    }
+
+    public void setStrikePoint(int strikePoint) {
+        this.strikePoint = strikePoint;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
 }

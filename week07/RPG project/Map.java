@@ -16,8 +16,10 @@ public class Map {
     int[][] currentMap;
 
     public Map(int level) {
+
         this.maplevel = level;
         this.currentMap = mapArr.getMap(level-1);
+
         Random rnd = new Random();
         int numberofEnemies = rnd.nextInt(3)+3+maplevel;
         createEnemies(numberofEnemies);
@@ -206,5 +208,9 @@ public class Map {
 
     public Enemy getLevelBoss() {
         return Enemies.get(0);
+    }
+
+    public MapLayout getMapArr() {
+        return mapArr;
     }
 }
