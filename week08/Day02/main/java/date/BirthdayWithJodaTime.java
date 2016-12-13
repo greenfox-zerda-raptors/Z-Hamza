@@ -1,41 +1,58 @@
 package date;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.Years;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
-/**
- * Created by kicsen on 2016. 11. 30..
- */
 public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
 
     @Override
-    public LocalDate parseDate(String str) {
+    public LocalDate parseDate(String str)  {
         // TODO - return with the parsed date; format is: yyyy-MM-dd
-        return null;
+        try{
+            LocalDate result = new LocalDate(str);
+            return result;
+        }catch( Exception e) {
+            return null;
+        }
     }
 
     @Override
     public String printMonthAndDay(LocalDate date) {
         // TODO - return the date formatted: month & day (MM. dd.)
-        return null;
+        String result = date.getMonthOfYear()+"."+" "+date.getDayOfMonth() + ".";
+
+        return result;
     }
 
     @Override
     public boolean isAnniversaryToday(LocalDate date) {
         // TODO - return with true if today is the same month+day as date
-        return false;
+
+        LocalDate today = new LocalDate();
+
+        if(today.getDayOfMonth() == date.getDayOfMonth() && today.getMonthOfYear() == date.getMonthOfYear()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     public int calculateAgeInYears(LocalDate birthday) {
-        // TODO - return how many years age the input date 'birthday' was
-        return -1;
+        LocalDate today = new LocalDate();
+
+        return Years.yearsBetween(birthday, today).getYears();
     }
 
     @Override
     public int calculateDaysToNextAnniversary(LocalDate date) {
         // TODO - the number of days remaining to the next anniversary of 'date' (e.g. if tomorrow, return 1)
+
         return -1;
     }
 
@@ -43,7 +60,7 @@ public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
         new BirthdayWithJodaTime().run();
     }
 
-    private void run() {
+    private void run()  {
 
         print("Birthday with java.util.Date.");
         String birthdayStr = readInput("What day were you born (yyyy-mm-dd)?");

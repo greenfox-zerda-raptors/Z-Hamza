@@ -102,7 +102,6 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
         long differenceMS = date.getTime() - today.getTime();
         long result = TimeUnit.DAYS.convert(differenceMS, TimeUnit.MILLISECONDS);
         return  (int) result;
-
     }
 
     public static void main(String[] args) {
