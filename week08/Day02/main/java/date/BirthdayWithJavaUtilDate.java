@@ -74,7 +74,6 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
         cal.setTime(birthday);
         int bdDay = cal.get(Calendar.DAY_OF_MONTH);
 
-
         int age = todayYear - bdYear;
 
         if (todayMonth < bdMonth) {
@@ -88,13 +87,6 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
 
         return age;
 
-
-//        while(dummy > 1000*60*60*24*365){
-//            long valami = 1000L*60*60*24*365;
-//            dummy -= valami;
-//            Year ++;
-//        }
-//      return Year;
     }
 
     @Override
