@@ -14,10 +14,14 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
     @Override
     public Date parseDate(String str) throws ParseException {
         // TODO - return with the parsed date; format is: yyyy-MM-dd
-        DateFormat format = new SimpleDateFormat("yyyy MM dd");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date result = format.parse(str);
-        return result;
+        try {
+            Date result = format.parse(str);
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -26,10 +30,10 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        int month = cal.get(Calendar.MONTH) +1;
+        int month = cal.get(Calendar.MONTH) + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        String result = month + " " + day;
+        String result = month + "." + " " + day + ".";
 
         return result;
     }
@@ -46,10 +50,10 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
         aniv.setTime(date);
         int dayAniv = aniv.get(Calendar.DAY_OF_MONTH);
         int monthAniv = aniv.get(Calendar.MONTH);
-        if( dayToday == dayAniv && monthToday == monthAniv) {
+
+        if (dayToday == dayAniv && monthToday == monthAniv) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -57,34 +61,55 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
     @Override
     public int calculateAgeInYears(Date birthday) {
         // TODO - return how many years age the input date 'birthday' was
-        Calendar aniv = Calendar.getInstance();
-        aniv.setTime(birthday);
-        int yearBD = aniv.get(Calendar.YEAR);
-
-
         Date today = new Date();
-        Calendar todayCal = Calendar.getInstance();
-        todayCal.setTime(today);
-        int yearToday = todayCal.get(Calendar.YEAR);
 
-        return yearToday - yearBD;
+        int todayYear = today.getYear();
+        int bdYear = birthday.getYear();
+        int todayMonth = today.getMonth();
+        int bdMonth = birthday.getMonth();
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(today);
+        int todayDay = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTime(birthday);
+        int bdDay = cal.get(Calendar.DAY_OF_MONTH);
+
+
+        int age = todayYear - bdYear;
+
+        if (todayMonth < bdMonth) {
+            age--;
+        }
+        if (todayMonth == bdMonth) {
+            if (todayDay < bdDay) {
+                age--;
+            }
+        }
+
+        return age;
+
+
+//        while(dummy > 1000*60*60*24*365){
+//            long valami = 1000L*60*60*24*365;
+//            dummy -= valami;
+//            Year ++;
+//        }
+//      return Year;
     }
 
     @Override
     public int calculateDaysToNextAnniversary(Date date) {
         // TODO - the number of days remaining to the next anniversary of 'date' (e.g. if tomorrow, return 1)
         Date today = new Date();
-        Calendar todayCal = Calendar.getInstance();
-        todayCal.setTime(today);
-
-        Calendar birthD = Calendar.getInstance();
-        birthD.setTime(date);
-        birthD.set(Calendar.YEAR, 2017);
-        long end = todayCal.getTimeInMillis();
-        long start = birthD.getTimeInMillis();
-
-        return Math.round((Math.abs(end - start))/(1000*60*60*24));
-
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(today);
+        date.setYear(today.getYear());
+        if (!date.after(today)) {
+            date.setYear(date.getYear() + 1);
+        }
+        long differenceMS = date.getTime() - today.getTime();
+        long result = TimeUnit.DAYS.convert(differenceMS, TimeUnit.MILLISECONDS);
+        return  (int) result;
 
     }
 
