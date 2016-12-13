@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> {
 
@@ -72,7 +73,19 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
     @Override
     public int calculateDaysToNextAnniversary(Date date) {
         // TODO - the number of days remaining to the next anniversary of 'date' (e.g. if tomorrow, return 1)
-        return -1;
+        Date today = new Date();
+        Calendar todayCal = Calendar.getInstance();
+        todayCal.setTime(today);
+
+        Calendar birthD = Calendar.getInstance();
+        birthD.setTime(date);
+        birthD.set(Calendar.YEAR, 2017);
+        long end = todayCal.getTimeInMillis();
+        long start = birthD.getTimeInMillis();
+
+        return Math.round((Math.abs(end - start))/(1000*60*60*24));
+
+
     }
 
     public static void main(String[] args) {
