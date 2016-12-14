@@ -1,6 +1,7 @@
 package date;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -12,12 +13,12 @@ public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
     @Override
     public LocalDate parseDate(String str)  {
         // TODO - return with the parsed date; format is: yyyy-MM-dd
-        try{
-            LocalDate result = new LocalDate(str);
+      if(str == null){
+          throw new NullPointerException();
+      }
+          LocalDate result = new LocalDate(str);
             return result;
-        }catch( Exception e) {
-            return null;
-        }
+
     }
 
     @Override
@@ -45,6 +46,9 @@ public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
     @Override
     public int calculateAgeInYears(LocalDate birthday) {
         LocalDate today = new LocalDate();
+        if (birthday == null){
+            throw new NullPointerException();
+        }
 
         return Years.yearsBetween(birthday, today).getYears();
     }
@@ -52,8 +56,22 @@ public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
     @Override
     public int calculateDaysToNextAnniversary(LocalDate date) {
         // TODO - the number of days remaining to the next anniversary of 'date' (e.g. if tomorrow, return 1)
+        DateTime today = DateTime.now();
+        int result;
 
-        return -1;
+        if(today.getDayOfYear() == date.getDayOfYear()){
+            result =0;
+        } else if(today.getDayOfYear() > date.getDayOfYear()){
+          DateTime dummy = new DateTime(today.getYear()+1, date.getMonthOfYear(), date.getDayOfMonth(), today.getHourOfDay(), today.getMinuteOfHour(), today.getSecondOfMinute()+1);
+            Interval time = new Interval(today, dummy);
+            result = (int) time.toDuration().getStandardDays();
+        } else {
+            DateTime end = new DateTime(today.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), today.getHourOfDay(), today.getMinuteOfHour(), today.getSecondOfMinute());
+            Interval interval = new Interval(today, end);
+            result = (int) interval.toDuration().getStandardDays();
+        }
+        return result;
+
     }
 
     public static void main(String[] args) {
