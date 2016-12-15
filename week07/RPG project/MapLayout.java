@@ -45,7 +45,7 @@ public class MapLayout {
 
     public int[][] getMap(int number){
         Maps.add(generateRandomMap());
-            return Maps.get(number);
+        return Maps.get(number);
     }
     public void addRandomMap (){
 

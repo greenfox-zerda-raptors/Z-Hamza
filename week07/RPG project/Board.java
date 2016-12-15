@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.*;
 
 /**
  * Created by Zoltán on 2016.12.07..
@@ -169,52 +168,5 @@ public class Board extends JPanel implements KeyListener{
     }
 
 
-    public void saveMap(Map map){
-        try {
-            FileOutputStream fileOut =
-                    new FileOutputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveMapdat.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(map);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved");
-        }catch(IOException i) {
-            i.printStackTrace();
-        }
-    }
-    public void saveHero(Hero hero){
-        try {
-            FileOutputStream fileOut =
-                    new FileOutputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveHerodat.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(hero);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved");
-        }catch(IOException i) {
-            i.printStackTrace();
-        }
-    }
-
-    public void loadMap() {
-        System.out.println("111");
-        Map map = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveMapdat.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            map = (Map) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-
-        } catch (ClassNotFoundException c) {
-            System.out.println("not found");
-            c.printStackTrace();
-
-        }
-        this.currentMap = map;
-    }
-
-    }
+}
 

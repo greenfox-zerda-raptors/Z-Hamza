@@ -48,10 +48,10 @@ public class SaveandLoad {
 
 //      -  - - - - -  - -   Boss stats - - - - -
         int[] bossStats = new int[]{
-         currentBoss.getPosX(), currentBoss.getPosY(),
-        currentBoss.getCharacterLevel(), 1,
-        currentBoss.getHealthPoint(), currentBoss.getCurrentHealthPoint(),
-        currentBoss.getStrikePoint(), currentBoss.getDefensePoint()
+                currentBoss.getPosX(), currentBoss.getPosY(),
+                currentBoss.getCharacterLevel(), 1,
+                currentBoss.getHealthPoint(), currentBoss.getCurrentHealthPoint(),
+                currentBoss.getStrikePoint(), currentBoss.getDefensePoint()
         };
 
         storedStats.add(bossStats);
@@ -90,10 +90,9 @@ public class SaveandLoad {
                 bw.newLine();
             }
             bw.newLine();
-
             bw.flush();
             bw.close();
-            System.out.println("bw closed");
+            System.out.println("Saved");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -105,12 +104,7 @@ public class SaveandLoad {
         }
         return result;
     }
-//    public static ToDoItems convertlineFile(String line){
-//        String a[] = line.split("  ", 4);
-//        String aa = a[0];
-//        String cc = a[3];
-//        return new ToDoItems(cc, aa);
-//    }
+
     public void loadfromFile(){
 
         BufferedReader br = null;
@@ -125,11 +119,10 @@ public class SaveandLoad {
             String line = br.readLine();
             System.out.println(line);
             while (line != null) {
-//                 reading the next line
+
                 String line1 = line;
                 System.out.println(line);
                 containerList.add(line1);
-//                exit condotion containerList
                 line = br.readLine();
             }
         } catch (Exception ex) {
@@ -148,12 +141,12 @@ public class SaveandLoad {
         }
     }
     private int[] convertStringtoIntArr(String string){
+
         String[] parts = string.split(" ");
         int[] result = new int[parts.length];
         for(int n = 0; n < parts.length; n++) {
             result[n] = Integer.parseInt(parts[n]);
         }
-
         return result;
     }
 }

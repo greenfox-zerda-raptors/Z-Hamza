@@ -120,7 +120,7 @@ public class Map  {
     }
 
     public int[] generateRandom(int maxValue, int numberofRandom){
-       ArrayList<Integer> dummyList = new ArrayList<>();
+        ArrayList<Integer> dummyList = new ArrayList<>();
         for(int i = 1; i < maxValue; i++){
             dummyList.add(i);
         }
