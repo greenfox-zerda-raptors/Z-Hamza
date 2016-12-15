@@ -3,20 +3,16 @@ import java.util.Random;
 /**
  * Created by Zoltán on 2016.12.05..
  */
-public class Hero extends Karakter {
-
-    public Hero(int posX, int posY) {
-        super("images/hero-down.png", posX, posY, true, calculateStats(1));
-    }
+public class Hero extends GameCharacter {
 
     public Hero(String image, int posX, int posY){
-        super(image, posX, posY, true, calculateStats(1));
+        super(image, posX, posY, true, calculateStats());
 
     }
 
 
 
-    private static int[] calculateStats(int number) {
+    private static int[] calculateStats() {
         Random rnd = new Random();
         int[] stats = new int[3];
         int d6 = rnd.nextInt(6)+1;

@@ -6,6 +6,7 @@ import java.io.IOException;
 
 /**
  * Created by Zoltán on 2016.12.07..
+ *
  */
 public class PositionedImage {
 

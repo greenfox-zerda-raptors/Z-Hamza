@@ -1,7 +1,7 @@
 /**
  * Created by Zoltán on 2016.12.07..
  */
-public class Tile extends GameObject{
+public class Tile extends GameObject {
     boolean stepabble;
     public Tile(String filename, int posX, int posY, boolean stepabble) {
         super(filename, posX, posY);

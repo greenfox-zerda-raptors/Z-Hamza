@@ -9,13 +9,14 @@ public class Skeleton extends Enemy {
 
 
     public Skeleton(String filename, int posX, int posY) {
-        super(filename, posX, posY, false, calculateStats(1));
+        super(filename, posX, posY, false, calculateStats());
 
     }
 
-    private static int[] calculateStats(int charLevel) {
-        int[] stats = new int[3];
+    private static int[] calculateStats() {
         Random rnd = new Random();
+        int charLevel = rnd.nextInt(3)+1;
+        int[] stats = new int[3];
         int d6 = rnd.nextInt(6)+1;
         stats[0] = 2 * charLevel * d6;
         int d7 = rnd.nextInt(6)+1;

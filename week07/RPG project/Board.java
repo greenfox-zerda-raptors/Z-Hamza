@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.*;
 
 /**
  * Created by Zoltán on 2016.12.07..
@@ -13,19 +14,20 @@ public class Board extends JPanel implements KeyListener{
     boolean gameWin = false;
     int mapLevel = 1;
     Map currentMap = new Map(mapLevel);
-
     int heroPosX;
     int heroPosY;
 
-    String skeletonImg = "images/skeleton.png";
-    String heroDownImg = "images/hero-down.png";
-    String heroUpImg = "images/hero-up.png";
-    String heroLeftImg = "images/hero-left.png";
-    String heroRightImg = "images/hero-right.png";
-    String bossImg = "images/boss.png";
+
+    final static String heroDownImg = "images/hero-down.png";
+    final static String heroUpImg = "images/hero-up.png";
+    final static String heroLeftImg = "images/hero-left.png";
+    final static String heroRightImg = "images/hero-right.png";
+
 
 
     Hero mainHero = new Hero(heroDownImg, heroPosX, heroPosY);
+
+    SaveandLoad saveGame = new SaveandLoad(mainHero, currentMap);
 
 
     public Board() {
@@ -52,6 +54,8 @@ public class Board extends JPanel implements KeyListener{
         graphics.fillRect(720, 0, 1000, 800);
 
         graphics.setColor(Color.BLACK);
+
+        currentMap.drawLevel(graphics);
 
         mainHero.writeOut(graphics, 0);
 
@@ -83,24 +87,24 @@ public class Board extends JPanel implements KeyListener{
         if(gameStatus == true) {
 
             if (keyCode == KeyEvent.VK_LEFT) {
-                int whatKind = currentMap.whatIsIt(mainHero.getPosY(), mainHero.getPosX() - 1);
+                int whatKind = currentMap.isItWall(mainHero.getPosY(), mainHero.getPosX() - 1);
                 mainHero.move(-1, 0, heroLeftImg, whatKind);
             }
 
             if (keyCode == KeyEvent.VK_RIGHT) {
-                int whatKind = currentMap.whatIsIt(mainHero.getPosY(), mainHero.getPosX() + 1);
+                int whatKind = currentMap.isItWall(mainHero.getPosY(), mainHero.getPosX() + 1);
                 mainHero.move(1, 0, heroRightImg, whatKind);
 
             }
 
             if (keyCode == KeyEvent.VK_UP) {
-                int whatKind = currentMap.whatIsIt(mainHero.getPosY() - 1, mainHero.getPosX());
+                int whatKind = currentMap.isItWall(mainHero.getPosY() - 1, mainHero.getPosX());
                 mainHero.move(0, -1, heroUpImg, whatKind);
 
             }
 
             if (keyCode == KeyEvent.VK_DOWN) {
-                int whatKind = currentMap.whatIsIt(mainHero.getPosY() + 1, mainHero.getPosX());
+                int whatKind = currentMap.isItWall(mainHero.getPosY() + 1, mainHero.getPosX());
                 mainHero.move(0, 1, heroDownImg, whatKind);
 
             }
@@ -115,6 +119,18 @@ public class Board extends JPanel implements KeyListener{
                         currentMap.enemyDeath(mainHero);
                     }
                 }
+            }
+            if(keyCode == KeyEvent.VK_S){
+                saveGame.saveNow();
+//                saveMap(currentMap);
+//                saveHero(mainHero);
+            }
+            if(keyCode == KeyEvent.VK_L){
+                saveGame.loadfromFile();
+//                System.out.println("aaa");
+//                loadMap();
+//                System.out.println("sssss");
+//                repaint();
             }
         }
         repaint();
@@ -142,8 +158,6 @@ public class Board extends JPanel implements KeyListener{
     }
     public void changeMap(int number){
 
-        this.currentMap.getMapArr().addRandomMap();
-
         this.mapLevel = mapLevel + number;
         this.currentMap = new Map(mapLevel);
         this.gameWin = false;
@@ -151,6 +165,56 @@ public class Board extends JPanel implements KeyListener{
         this.mainHero.setPosX(0);
         this.mainHero.setPosY(0);
         mainHero.levelUp();
+        currentMap.scaleEnemies(mapLevel);
     }
 
-}
+
+    public void saveMap(Map map){
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveMapdat.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(map);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
+    public void saveHero(Hero hero){
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveHerodat.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(hero);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public void loadMap() {
+        System.out.println("111");
+        Map map = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("C:\\Users\\Zoltán\\Desktop\\Game\\gamesaveMapdat.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            map = (Map) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+
+        } catch (ClassNotFoundException c) {
+            System.out.println("not found");
+            c.printStackTrace();
+
+        }
+        this.currentMap = map;
+    }
+
+    }
+

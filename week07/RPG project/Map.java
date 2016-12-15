@@ -5,9 +5,10 @@ import java.util.Random;
 /**
  * Created by Zoltán on 2016.12.07..
  */
-public class Map {
+public class Map  {
 
     ArrayList<GameObject> tileField;
+
     ArrayList<Enemy> Enemies = new ArrayList<>();
     int maplevel;
 
@@ -19,7 +20,7 @@ public class Map {
 
         this.maplevel = level;
         this.currentMap = mapArr.getMap(level-1);
-
+        mapArr.addRandomMap();
         Random rnd = new Random();
         int numberofEnemies = rnd.nextInt(3)+3+maplevel;
         createEnemies(numberofEnemies);
@@ -49,7 +50,7 @@ public class Map {
         return tileField;
     }
 
-    public int whatIsIt(int xPos, int yPos){
+    public int isItWall(int xPos, int yPos){
         try {
             if( currentMap[xPos][yPos] >= 1) {
                 return 1;
@@ -62,11 +63,6 @@ public class Map {
         }
 
     }
-    public int[][] getCurrentMap() {
-        return currentMap;
-    }
-
-
 
 // - - - - -  Creating the random enemies - - - - - - -
 
@@ -82,6 +78,7 @@ public class Map {
         }
         return number;
     }
+
     public int[][] getViableCoords(int[][] mapLayout){
         int counter = 0;
         int numberofFloors = getNumberofFloors(currentMap);
@@ -110,7 +107,16 @@ public class Map {
             Enemies.add(new Skeleton("images/skeleton.png", coord[randomNumber[i+1]][0], coord[randomNumber[i+1]][1]));
 
         }
+    }
 
+    public void scaleEnemies(int level){
+        Random rnd = new Random();
+        int d3 = rnd.nextInt(6)+level;
+        Enemies.get(0).monsterLvLUp(d3+level);
+        for(int i = 1; i < Enemies.size(); i++){
+            int d2 = rnd.nextInt(3)+level;
+            Enemies.get(i).monsterLvLUp(d2+level);
+        }
     }
 
     public int[] generateRandom(int maxValue, int numberofRandom){
@@ -132,7 +138,6 @@ public class Map {
 
     }
 
-
     public boolean isThereEnemy(Hero hero){
         int x = getHeroPosXY(hero)[0];
         int y = getHeroPosXY(hero)[1];
@@ -148,6 +153,7 @@ public class Map {
         return false;
 
     }
+
     public Enemy findEnemy(Hero hero){
 
         int x = getHeroPosXY(hero)[0];
@@ -164,6 +170,7 @@ public class Map {
         return null;
 
     }
+
     public int getSkeletonNumber(Hero hero){
 
         int x = getHeroPosXY(hero)[0];
@@ -191,6 +198,7 @@ public class Map {
         int[] posXY = new int[]{hero.getPosX(), hero.getPosY()};
         return posXY;
     }
+
     public boolean areAllDead(){
         int c = 0;
         int size = Enemies.size();
@@ -206,11 +214,22 @@ public class Map {
         }
     }
 
-    public Enemy getLevelBoss() {
-        return Enemies.get(0);
+    public void drawLevel(Graphics graphics){
+        graphics.setFont(new Font("Courier New", Font.BOLD, 28));
+        graphics.drawString("MAP: " + getMaplevel(), 800,40);
     }
 
-    public MapLayout getMapArr() {
-        return mapArr;
+    public ArrayList<Enemy> getEnemies() {
+        return Enemies;
     }
+
+    public int[][] getCurrentMap() {
+        return currentMap;
+    }
+
+    public int getMaplevel() {
+        return maplevel;
+    }
+
+
 }

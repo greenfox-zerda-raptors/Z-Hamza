@@ -5,12 +5,13 @@ import java.util.Random;
  */
 public class Boss extends Enemy {
 
+
     public Boss(String filename, int posX, int posY) {
         super(filename, posX, posY, false, calculateStats(3));
 
     }
 
-    private static  int[] calculateStats(int charLevel) {
+  private static  int[] calculateStats(int charLevel) {
         Random rnd = new Random();
         int[] stats = new int[3];
         int d6 = rnd.nextInt(6) + 1;

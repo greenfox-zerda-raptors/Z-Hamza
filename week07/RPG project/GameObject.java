@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,7 +6,7 @@ import java.io.IOException;
 
 /**
  * Created by Zoltán on 2016.12.07..
- * 
+ *
  */
 public class GameObject {
 
@@ -41,7 +40,7 @@ public class GameObject {
 
     public void move(int x, int y, String filename, int whatIsIt) {
 
-        if (whatIsIt == 1) {
+        if (whatIsIt >= 1) {
             posX += x * 72;
             posY += y * 72;
         }
