@@ -7,13 +7,15 @@ import java.util.Random;
  */
 public class Map  {
 
+    private static String skeletonImg ="images/skeleton.png" ;
+    private static String bossImg = "images/boss.png";
+
     ArrayList<GameObject> tileField;
 
     ArrayList<Enemy> Enemies = new ArrayList<>();
+
     int maplevel;
-
     MapLayout mapArr = new MapLayout();
-
     int[][] currentMap;
 
     public Map(int level) {
@@ -22,19 +24,10 @@ public class Map  {
         this.currentMap = mapArr.getMap(level-1);
         mapArr.addRandomMap();
         Random rnd = new Random();
-        int numberofEnemies = rnd.nextInt(3)+3+maplevel;
+        int numberofEnemies = rnd.nextInt(3+maplevel)+3;
         createEnemies(numberofEnemies);
+        setTileField(currentMap);
 
-        tileField = new ArrayList<GameObject>();
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (currentMap[i][j] >= 1) {
-                    tileField.add(new Floor(j, i));
-                } else if (currentMap[i][j] == 0) {
-                    tileField.add(new Wall(j, i));
-                }
-            }
-        }
     }
 
     public void draw(Graphics graphics){
@@ -64,6 +57,19 @@ public class Map  {
 
     }
 
+    private void setTileField(int[][] currentMap){
+        ArrayList<GameObject> result = new ArrayList<GameObject>();
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (currentMap[i][j] >= 1) {
+                    result.add(new Floor(j, i));
+                } else if (currentMap[i][j] == 0) {
+                    result.add(new Wall(j, i));
+                }
+            }
+        }
+        this.tileField = result;
+    }
 // - - - - -  Creating the random enemies - - - - - - -
 
     public int getNumberofFloors(int[][] mapLayout){
@@ -101,10 +107,10 @@ public class Map  {
 
         int[][] coord = getViableCoords(currentMap);
         int[] randomNumber = generateRandom(coord.length, numberofEnemies+1);
-        Enemies.add(new Boss("images/boss.png", coord[randomNumber[0]][0], coord[randomNumber[0]][1]));
+        Enemies.add(new Boss(bossImg, coord[randomNumber[0]][0], coord[randomNumber[0]][1]));
 
         for(int i = 0; i < numberofEnemies; i++){
-            Enemies.add(new Skeleton("images/skeleton.png", coord[randomNumber[i+1]][0], coord[randomNumber[i+1]][1]));
+            Enemies.add(new Skeleton(skeletonImg, coord[randomNumber[i+1]][0], coord[randomNumber[i+1]][1]));
 
         }
     }
@@ -231,5 +237,30 @@ public class Map  {
         return maplevel;
     }
 
+    public Map(SaveLoadTxt saved){
+        this.maplevel = saved.getMaplevel();
+        this.currentMap = saved.getMapLayout();
+        setTileField(saved.getMapLayout());
+        this.Enemies = convertToEnemiesArray(saved.getStoredStats());
+        mapArr.addRandomMap();
+    }
+
+    public ArrayList<Enemy> convertToEnemiesArray(ArrayList<int[]> stats){
+       ArrayList<Enemy> result = new ArrayList<>();
+
+        Boss boss = new Boss(bossImg, stats.get(1));
+        result.add(boss);
+
+        for(int i = 2; i < stats.size(); i++){
+            Skeleton skeleton = new Skeleton(skeletonImg,stats.get(i));
+            result.add(skeleton);
+        }
+
+        return result;
+    }
+
+    public MapLayout getMapArr() {
+        return mapArr;
+    }
 
 }

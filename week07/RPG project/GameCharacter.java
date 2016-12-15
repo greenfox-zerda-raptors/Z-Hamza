@@ -16,6 +16,7 @@ public abstract class GameCharacter extends GameObject  {
 
     int currentHealthPoint;
 
+
     public GameCharacter(String filename, int posX, int posY, boolean isMoveable, int[] stats) {
 
         super(filename, posX, posY);
@@ -23,6 +24,18 @@ public abstract class GameCharacter extends GameObject  {
         this.currentHealthPoint = healthPoint;
         this.defensePoint = stats[1];
         this.strikePoint = stats[2];
+    }
+    public GameCharacter(String fileName, int[] stats){
+        super(fileName, stats[0], stats[1]);
+        this.characterLevel = stats[2];
+        this.healthPoint = stats[4];
+        this.currentHealthPoint = stats[5];
+        this.strikePoint = stats[6];
+        this.defensePoint = stats[7];
+        if(stats[3] == 0){
+            this.isAlive = false;
+        }
+
     }
 
     public GameCharacter(String filename, int posX, int posY) {
@@ -56,7 +69,6 @@ public abstract class GameCharacter extends GameObject  {
             graphics.drawString(writeStat()[i], 750, 100 + place * 120 + 20*i);
         }
     }
-
 
 
     // - - - - - - The figth - - - - - - - -
@@ -101,6 +113,13 @@ public abstract class GameCharacter extends GameObject  {
         }
     }
 
+    public int isAliveInt(){
+        if(this.isAlive){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     public boolean checkifDead(GameCharacter karakter){
         if(karakter.getCurrentHealthPoint() <= 0){
@@ -124,6 +143,7 @@ public abstract class GameCharacter extends GameObject  {
             karakter.setCurrentHealthPoint(karakter.getCurrentHealthPoint() + number);
         }
     }
+
     public void levelUP(){
 
         this.setCharacterLevel(getCharacterLevel() +1 );
@@ -135,6 +155,7 @@ public abstract class GameCharacter extends GameObject  {
         int d6three = rnd.nextInt(6)+1;
         this.setStrikePoint(getStrikePoint() + d6three);
     }
+
     public void monsterLvLUp(int number){
         this.setCharacterLevel(getCharacterLevel() +number );
         Random rnd = new Random();
@@ -148,10 +169,6 @@ public abstract class GameCharacter extends GameObject  {
             this.setStrikePoint(getStrikePoint() + d6three);
         }
     }
-
-
-
-
 
 
     //  - - - - - - - Getters and setters - - - -

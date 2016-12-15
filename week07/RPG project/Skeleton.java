@@ -5,12 +5,11 @@ import java.util.Random;
  */
 public class Skeleton extends Enemy {
 
-
-
-
     public Skeleton(String filename, int posX, int posY) {
         super(filename, posX, posY, false, calculateStats());
-
+    }
+    public Skeleton(String filename, int[] stats){
+        super(filename, stats);
     }
 
     private static int[] calculateStats() {

@@ -8,6 +8,9 @@ abstract public class Enemy extends GameCharacter {
         super(filename, posX, posY, isMoveable, stats);
         this.enemyImg = filename;
     }
+    public Enemy(String fileName, int[] stats){
+        super(fileName, stats);
+    }
 
     public Enemy(String filename, int posX, int posY) {
         super(filename, posX, posY);

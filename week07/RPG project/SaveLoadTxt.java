@@ -4,11 +4,14 @@ import java.util.ArrayList;
 /**
  * Created by Zoltán on 2016.12.15..
  */
-public class SaveandLoad {
+public class SaveLoadTxt {
     private String fileName = "saveTest.txt";
+    private String filepath = "C:\\Users\\Zoltán\\Desktop\\Game\\";
 
     private Hero mainhero;
     private Map currentMap;
+    private int maplevel;
+
 
     private ArrayList<int[]> storedStats = new ArrayList<>();
     private int[][] mapLayout = new int[11][10];
@@ -19,15 +22,21 @@ public class SaveandLoad {
 
     private ArrayList<String> containerList = new ArrayList<>();
 
-    public SaveandLoad(Hero mainhero, Map currentMap) {
+    public SaveLoadTxt(Hero mainhero, Map currentMap) {
         this.mainhero = mainhero;
         this.currentMap = currentMap;
     }
+    public SaveLoadTxt(Hero mainhero, Map currentMap, String saveFileName){
+        this(mainhero, currentMap);
+        this.fileName = saveFileName;
+    }
 
     public void saveNow(){
+        ArrayList<int[]> tempStorage = new ArrayList<>();
         //        - - - - - -  Map values - - -  - - - - - -
 
         int mapLvl = currentMap.getMaplevel();
+        this.maplevel = mapLvl;
         this.mapLayout = currentMap.getCurrentMap();
         ArrayList<Enemy> enemiesList = currentMap.getEnemies();
 
@@ -39,46 +48,50 @@ public class SaveandLoad {
                 mainhero.getStrikePoint(), mainhero.getDefensePoint(),
 
         };
-        storedStats.add(heroStats);
-
+        tempStorage.add(heroStats);
 
 //       - - - - - -   Monster values one by one - - - - - - - -
-
         Enemy currentBoss = enemiesList.get(0);
 
 //      -  - - - - -  - -   Boss stats - - - - -
         int[] bossStats = new int[]{
                 currentBoss.getPosX(), currentBoss.getPosY(),
-                currentBoss.getCharacterLevel(), 1,
+                currentBoss.getCharacterLevel(), currentBoss.isAliveInt(),
                 currentBoss.getHealthPoint(), currentBoss.getCurrentHealthPoint(),
                 currentBoss.getStrikePoint(), currentBoss.getDefensePoint()
         };
-
-        storedStats.add(bossStats);
+        tempStorage.add(bossStats);
 
 //        - - - - - - Skeleton stats - - - -  -
         for(int i = 1; i < enemiesList.size(); i++){
             int[] skeletonStatDummy = new int[]{
                     enemiesList.get(i).getPosX(), enemiesList.get(i).getPosY(),
-                    enemiesList.get(i).getCharacterLevel(), 1,
+                    enemiesList.get(i).getCharacterLevel(), enemiesList.get(i).isAliveInt(),
                     enemiesList.get(i).getHealthPoint(), enemiesList.get(i).getCurrentHealthPoint(),
                     enemiesList.get(i).getStrikePoint(), enemiesList.get(i).getDefensePoint(),
             };
-            storedStats.add(skeletonStatDummy);
+            tempStorage.add(skeletonStatDummy);
         }
+        this.storedStats = tempStorage;
         this.writeToFile();
     }
 
     public void writeToFile(){
+
+
         BufferedWriter bw = null;
+        File file = new File(filepath+fileName);
+        file.delete();
+
+
         try {
-            bw = new BufferedWriter(new FileWriter("C:\\Users\\Zoltán\\Desktop\\Game\\test.txt"));
+            FileWriter fw = new FileWriter(file.getName());
+            bw = new BufferedWriter(fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
 //            bw.write(content);
-
             for(int j = 0; j < mapLayout[0].length; j++){
                 bw.write(writeToLine(mapLayout[j]));
                 bw.newLine();
@@ -107,10 +120,12 @@ public class SaveandLoad {
 
     public void loadfromFile(){
 
+       containerList = new ArrayList<>();
+
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new FileReader("C:\\Users\\Zoltán\\Desktop\\Game\\test.txt"));
+            br = new BufferedReader(new FileReader(filepath+fileName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -140,6 +155,7 @@ public class SaveandLoad {
             loadStats.add(convertStringtoIntArr(containerList.get(j)));
         }
     }
+
     private int[] convertStringtoIntArr(String string){
 
         String[] parts = string.split(" ");
@@ -148,5 +164,17 @@ public class SaveandLoad {
             result[n] = Integer.parseInt(parts[n]);
         }
         return result;
+    }
+
+    public ArrayList<int[]> getStoredStats() {
+        return storedStats;
+    }
+
+    public int[][] getMapLayout() {
+        return mapLayout;
+    }
+
+    public int getMaplevel() {
+        return maplevel;
     }
 }

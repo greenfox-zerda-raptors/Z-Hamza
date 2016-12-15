@@ -26,14 +26,14 @@ public class Board extends JPanel implements KeyListener{
 
     Hero mainHero = new Hero(heroDownImg, heroPosX, heroPosY);
 
-    SaveandLoad saveGame = new SaveandLoad(mainHero, currentMap);
+    SaveLoadTxt saveGame = new SaveLoadTxt(mainHero, currentMap);
 
 
     public Board() {
-
         addKeyListener(this);
         setPreferredSize(new Dimension(1000, 800));
         setVisible(true);
+        repaint();
 
     }
     public void addNotify() {
@@ -78,12 +78,12 @@ public class Board extends JPanel implements KeyListener{
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
-        if(gameWin == true){
-            if(keyCode == KeyEvent.VK_ENTER){
+        if (gameWin == true) {
+            if (keyCode == KeyEvent.VK_ENTER) {
                 changeMap(1);
             }
         }
-        if(gameStatus == true) {
+        if (gameStatus == true) {
 
             if (keyCode == KeyEvent.VK_LEFT) {
                 int whatKind = currentMap.isItWall(mainHero.getPosY(), mainHero.getPosX() - 1);
@@ -119,22 +119,35 @@ public class Board extends JPanel implements KeyListener{
                     }
                 }
             }
-            if(keyCode == KeyEvent.VK_S){
-                saveGame.saveNow();
-//                saveMap(currentMap);
-//                saveHero(mainHero);
-            }
-            if(keyCode == KeyEvent.VK_L){
-                saveGame.loadfromFile();
+
+//        @@@@@@@ implemented for testing  @@@@@@@
+
+//            if(keyCode == KeyEvent.VK_S){
+//                savingGame();
+////                saveMap(currentMap);
+////                saveHero(mainHero);
+//            }
+//            if(keyCode == KeyEvent.VK_L){
+//                loadingGame();
+//
 //                System.out.println("aaa");
 //                loadMap();
 //                System.out.println("sssss");
 //                repaint();
-            }
         }
+
         repaint();
         checkLoseGame();
         checkWinGame();
+    }
+    public void loadingGame() {
+        saveGame.loadfromFile();
+        loadMap(saveGame);
+    }
+
+    public void savingGame() {
+        saveGame = new SaveLoadTxt(mainHero, currentMap);
+        saveGame.saveNow();
     }
 
     @Override
@@ -167,6 +180,35 @@ public class Board extends JPanel implements KeyListener{
         currentMap.scaleEnemies(mapLevel);
     }
 
+    public void loadMap(SaveLoadTxt saved){
+        this.currentMap = new Map(saved);
+        this.mainHero = new Hero("images/hero-down.png", saved.getStoredStats().get(0));
+        this.mapLevel = saved.getMaplevel();
+    }
 
+
+    public void setGameStatus(boolean gameStatus) {
+        this.gameStatus = gameStatus;
+    }
+
+    public void setGameWin(boolean gameWin) {
+        this.gameWin = gameWin;
+    }
+
+    public void setMapLevel(int mapLevel) {
+        this.mapLevel = mapLevel;
+    }
+
+    public void setCurrentMap(Map currentMap) {
+        this.currentMap = currentMap;
+    }
+
+    public void setMainHero(Hero mainHero) {
+        this.mainHero = mainHero;
+    }
+
+    public SaveLoadTxt getSaveGame() {
+        return saveGame;
+    }
 }
 

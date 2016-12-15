@@ -7,7 +7,10 @@ public class Hero extends GameCharacter {
 
     public Hero(String image, int posX, int posY){
         super(image, posX, posY, true, calculateStats());
+    }
 
+    public Hero(String image, int[] stats){
+        super(image, stats);
     }
 
 
