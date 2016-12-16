@@ -102,7 +102,6 @@ public class Map  {
         return result;
     }
 
-
     public void createEnemies(int numberofEnemies){
 
         int[][] coord = getViableCoords(currentMap);

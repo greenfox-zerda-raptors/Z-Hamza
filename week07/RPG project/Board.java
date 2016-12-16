@@ -140,14 +140,14 @@ public class Board extends JPanel implements KeyListener{
         checkLoseGame();
         checkWinGame();
     }
-    public void loadingGame() {
-        saveGame.loadfromFile();
+    public void loadingGame(String fileName) {
+        saveGame.loadfromFile(fileName);
         loadMap(saveGame);
     }
 
-    public void savingGame() {
+    public void savingGame(String fileName) {
         saveGame = new SaveLoadTxt(mainHero, currentMap);
-        saveGame.saveNow();
+        saveGame.saveNow(fileName);
     }
 
     @Override
@@ -163,11 +163,13 @@ public class Board extends JPanel implements KeyListener{
             this.gameStatus = false;
         }
     }
+
     public void checkWinGame(){
         if(currentMap.areAllDead() == true){
             this.gameWin = true;
         }
     }
+
     public void changeMap(int number){
 
         this.mapLevel = mapLevel + number;

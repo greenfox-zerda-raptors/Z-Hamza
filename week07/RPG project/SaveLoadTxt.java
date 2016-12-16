@@ -5,6 +5,7 @@ import java.util.ArrayList;
  * Created by Zoltán on 2016.12.15..
  */
 public class SaveLoadTxt {
+
     private String fileName = "saveTest.txt";
     private String filepath = "C:\\Users\\Zoltán\\Desktop\\Game\\";
 
@@ -13,25 +14,27 @@ public class SaveLoadTxt {
     private int maplevel;
 
 
+//    For saving
     private ArrayList<int[]> storedStats = new ArrayList<>();
     private int[][] mapLayout = new int[11][10];
-
+//    For loading
     ArrayList<int[]> loadStats = new ArrayList<>();
     int[][] mapLayoutLoad = new int[11][10];
 
-
+//  A dummy list for container
     private ArrayList<String> containerList = new ArrayList<>();
 
     public SaveLoadTxt(Hero mainhero, Map currentMap) {
         this.mainhero = mainhero;
         this.currentMap = currentMap;
     }
+
     public SaveLoadTxt(Hero mainhero, Map currentMap, String saveFileName){
         this(mainhero, currentMap);
         this.fileName = saveFileName;
     }
 
-    public void saveNow(){
+    public void saveNow(String fileName){
         ArrayList<int[]> tempStorage = new ArrayList<>();
         //        - - - - - -  Map values - - -  - - - - - -
 
@@ -73,10 +76,10 @@ public class SaveLoadTxt {
             tempStorage.add(skeletonStatDummy);
         }
         this.storedStats = tempStorage;
-        this.writeToFile();
+        this.writeToFile(fileName);
     }
 
-    public void writeToFile(){
+    public void writeToFile(String fileName){
 
 
         BufferedWriter bw = null;
@@ -105,11 +108,12 @@ public class SaveLoadTxt {
             bw.newLine();
             bw.flush();
             bw.close();
-            System.out.println("Saved");
+            System.out.println("Saved to " + file.getAbsolutePath());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
     private String writeToLine(int[] intArr){
         String result = "";
         for(int i = 0; i<intArr.length; i++ ){
@@ -118,7 +122,7 @@ public class SaveLoadTxt {
         return result;
     }
 
-    public void loadfromFile(){
+    public void loadfromFile(String fileName){
 
        containerList = new ArrayList<>();
 
@@ -127,7 +131,7 @@ public class SaveLoadTxt {
         try {
             br = new BufferedReader(new FileReader(filepath+fileName));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Save does not exists");;
         }
 
         try {

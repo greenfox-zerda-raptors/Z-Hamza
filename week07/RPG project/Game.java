@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 public class Game extends JFrame {
 
     Board gameBoard = new Board();
+    private String fileName01 = "savedGame01.txt";
+    private String fileName02 = "savedGame02.txt";
+    private String fileName03 = "savedGame03.txt";
 
     public Game() {
 
@@ -41,17 +44,52 @@ public class Game extends JFrame {
         newgameMenuItem.addActionListener(new NewGameAction());
         fileMenu.add(newgameMenuItem);
 
-        JMenuItem savegameMenuItem = new JMenuItem("Save");
-        savegameMenuItem.setMnemonic(KeyEvent.VK_E);
-        savegameMenuItem.setToolTipText("Saves the game");
-        savegameMenuItem.addActionListener(new SaveGameAction());
-        fileMenu.add(savegameMenuItem);
+        JMenu savegameMenu = new JMenu("Save");
+        savegameMenu.setMnemonic(KeyEvent.VK_E);
+        savegameMenu.setToolTipText("Saves the game");
+        fileMenu.add(savegameMenu);
 
-        JMenuItem loadGameMenuItem = new JMenuItem("Load");
-        loadGameMenuItem.setMnemonic(KeyEvent.VK_E);
-        loadGameMenuItem.setToolTipText("Loads a saved game");
-        loadGameMenuItem.addActionListener(new LoadGameAction());
-        fileMenu.add(loadGameMenuItem);
+        JMenuItem saveGame01 = new JMenuItem("Save 1");
+        saveGame01.setMnemonic(KeyEvent.VK_E);
+        saveGame01.setToolTipText("Saving game to 1");
+        saveGame01.addActionListener(new SaveGameAction(fileName01));
+        savegameMenu.add(saveGame01);
+
+        JMenuItem saveGame02 = new JMenuItem("Save 2");
+        saveGame02.setMnemonic(KeyEvent.VK_E);
+        saveGame02.setToolTipText("Saving game to 2");
+        saveGame02.addActionListener(new SaveGameAction(fileName02));
+        savegameMenu.add(saveGame02);
+
+        JMenuItem saveGame03 = new JMenuItem("Save 3");
+        saveGame03.setMnemonic(KeyEvent.VK_E);
+        saveGame03.setToolTipText("Saving game to 3");
+        saveGame03.addActionListener(new SaveGameAction(fileName03));
+        savegameMenu.add(saveGame03);
+
+
+        JMenu loadGameMenu = new JMenu("Load");
+        loadGameMenu.setMnemonic(KeyEvent.VK_E);
+        loadGameMenu.setToolTipText("Loads a saved game");
+        fileMenu.add(loadGameMenu);
+
+        JMenuItem loadGame01 = new JMenuItem("Load 1");
+        loadGame01.setMnemonic(KeyEvent.VK_E);
+        loadGame01.setToolTipText("Loading game to 1");
+        loadGame01.addActionListener(new LoadGameAction(fileName01));
+        loadGameMenu.add(loadGame01);
+
+        JMenuItem loadGame02 = new JMenuItem("Load 2");
+        loadGame02.setMnemonic(KeyEvent.VK_E);
+        loadGame02.setToolTipText("Loading game to 2");
+        loadGame02.addActionListener(new LoadGameAction(fileName02));
+        loadGameMenu.add(loadGame02);
+
+        JMenuItem loadGame03 = new JMenuItem("Load 3");
+        loadGame03.setMnemonic(KeyEvent.VK_E);
+        loadGame03.setToolTipText("Loading game to 3");
+        loadGame03.addActionListener(new LoadGameAction(fileName03));
+        loadGameMenu.add(loadGame03);
 
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setMnemonic(KeyEvent.VK_E);
@@ -77,15 +115,25 @@ public class Game extends JFrame {
         }
     }
     private class SaveGameAction implements ActionListener {
+        private String fileName;
+
+        public SaveGameAction(String fileName){
+            this.fileName = fileName;
+        }
         @Override
         public void actionPerformed(ActionEvent e){
-            save();
+            save(fileName);
         }
     }
+
     private class LoadGameAction implements ActionListener {
+        private String fileName;
+        public LoadGameAction(String fileName){
+            this.fileName = fileName;
+        }
         @Override
         public void actionPerformed(ActionEvent e){
-            load();
+            load(fileName);
         }
     }
 
@@ -97,11 +145,11 @@ public class Game extends JFrame {
         gameBoard.setCurrentMap(new Map(1));
         gameBoard.repaint();
     }
-    private void save(){
-        gameBoard.savingGame();
+    private void save(String fileName){
+        gameBoard.savingGame(fileName);
     }
-    private void load(){
-        gameBoard.loadingGame();
+    private void load(String fileName){
+        gameBoard.loadingGame(fileName);
         gameBoard.repaint();
     }
 
