@@ -21,8 +21,8 @@ public class SaveLoadTxt {
     ArrayList<int[]> loadStats = new ArrayList<>();
     int[][] mapLayoutLoad = new int[11][10];
 
-//  A dummy list for container
-    private ArrayList<String> containerList = new ArrayList<>();
+//  A containerlist for loading stats
+    private ArrayList<String> containerLoading = new ArrayList<>();
 
     public SaveLoadTxt(Hero mainhero, Map currentMap) {
         this.mainhero = mainhero;
@@ -94,7 +94,6 @@ public class SaveLoadTxt {
             e.printStackTrace();
         }
         try {
-//            bw.write(content);
             for(int j = 0; j < mapLayout[0].length; j++){
                 bw.write(writeToLine(mapLayout[j]));
                 bw.newLine();
@@ -124,7 +123,7 @@ public class SaveLoadTxt {
 
     public void loadfromFile(String fileName){
 
-       containerList = new ArrayList<>();
+       containerLoading = new ArrayList<>();
 
         BufferedReader br = null;
 
@@ -141,7 +140,7 @@ public class SaveLoadTxt {
 
                 String line1 = line;
                 System.out.println(line);
-                containerList.add(line1);
+                containerLoading.add(line1);
                 line = br.readLine();
             }
         } catch (Exception ex) {
@@ -153,10 +152,10 @@ public class SaveLoadTxt {
     private void gettingValuesfromLoaded(){
 
         for(int i = 0; i < 11; i ++){
-            mapLayoutLoad[i] = convertStringtoIntArr(containerList.get(0));
+            mapLayoutLoad[i] = convertStringtoIntArr(containerLoading.get(0));
         }
-        for(int j = 12; j < containerList.size()-1; j++ ){
-            loadStats.add(convertStringtoIntArr(containerList.get(j)));
+        for(int j = 12; j < containerLoading.size()-1; j++ ){
+            loadStats.add(convertStringtoIntArr(containerLoading.get(j)));
         }
     }
 

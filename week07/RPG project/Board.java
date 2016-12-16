@@ -80,7 +80,7 @@ public class Board extends JPanel implements KeyListener{
         int keyCode = e.getKeyCode();
         if (gameWin == true) {
             if (keyCode == KeyEvent.VK_ENTER) {
-                changeMap(1);
+                nextMap(1);
             }
         }
         if (gameStatus == true) {
@@ -170,7 +170,7 @@ public class Board extends JPanel implements KeyListener{
         }
     }
 
-    public void changeMap(int number){
+    public void nextMap(int number){
 
         this.mapLevel = mapLevel + number;
         this.currentMap = new Map(mapLevel);

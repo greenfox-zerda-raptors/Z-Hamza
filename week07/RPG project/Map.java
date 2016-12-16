@@ -30,6 +30,16 @@ public class Map  {
 
     }
 
+//    Constructor for loading
+    public Map(SaveLoadTxt saved){
+        this.maplevel = saved.getMaplevel();
+        this.currentMap = saved.getMapLayout();
+        setTileField(saved.getMapLayout());
+        this.Enemies = convertToEnemiesArray(saved.getStoredStats());
+        mapArr.addRandomMap();
+        scanEnemyDead();
+    }
+// Drawing the map
     public void draw(Graphics graphics){
         for (GameObject tile : tileField) {
             tile.draw(graphics);
@@ -37,10 +47,6 @@ public class Map  {
         for(GameObject iskeleton : Enemies){
             iskeleton.draw(graphics);
         }
-    }
-
-    public ArrayList<GameObject> getTileField() {
-        return tileField;
     }
 
     public int isItWall(int xPos, int yPos){
@@ -70,6 +76,7 @@ public class Map  {
         }
         this.tileField = result;
     }
+
 // - - - - -  Creating the random enemies - - - - - - -
 
     public int getNumberofFloors(int[][] mapLayout){
@@ -83,9 +90,9 @@ public class Map  {
             }
         }
         return number;
-    }
+    } 
 
-    public int[][] getViableCoords(int[][] mapLayout){
+    public int[][] getViableCoords(){
         int counter = 0;
         int numberofFloors = getNumberofFloors(currentMap);
         int[][] result = new int[numberofFloors][2];
@@ -104,8 +111,8 @@ public class Map  {
 
     public void createEnemies(int numberofEnemies){
 
-        int[][] coord = getViableCoords(currentMap);
-        int[] randomNumber = generateRandom(coord.length, numberofEnemies+1);
+        int[][] coord = getViableCoords();
+        int[] randomNumber = generateRandomCoordinates(coord.length, numberofEnemies+1);
         Enemies.add(new Boss(bossImg, coord[randomNumber[0]][0], coord[randomNumber[0]][1]));
 
         for(int i = 0; i < numberofEnemies; i++){
@@ -124,7 +131,7 @@ public class Map  {
         }
     }
 
-    public int[] generateRandom(int maxValue, int numberofRandom){
+    public int[] generateRandomCoordinates(int maxValue, int numberofRandom){
         ArrayList<Integer> dummyList = new ArrayList<>();
         for(int i = 1; i < maxValue; i++){
             dummyList.add(i);
@@ -194,11 +201,19 @@ public class Map  {
     }
 
     public void enemyDeath(Hero hero){
-
         Enemies.get(getSkeletonNumber(hero));
 
     }
+    
+    public void scanEnemyDead(){
+        for(Enemy enemy : Enemies){
+            if(!enemy.isAlive) {
+                enemy.changeImage("images/skull.png");
+            }
+        }
+    }
 
+//    Getters and setters
     public int[] getHeroPosXY(Hero hero){
         int[] posXY = new int[]{hero.getPosX(), hero.getPosY()};
         return posXY;
@@ -236,13 +251,6 @@ public class Map  {
         return maplevel;
     }
 
-    public Map(SaveLoadTxt saved){
-        this.maplevel = saved.getMaplevel();
-        this.currentMap = saved.getMapLayout();
-        setTileField(saved.getMapLayout());
-        this.Enemies = convertToEnemiesArray(saved.getStoredStats());
-        mapArr.addRandomMap();
-    }
 
     public ArrayList<Enemy> convertToEnemiesArray(ArrayList<int[]> stats){
        ArrayList<Enemy> result = new ArrayList<>();
@@ -261,5 +269,6 @@ public class Map  {
     public MapLayout getMapArr() {
         return mapArr;
     }
+
 
 }

@@ -171,6 +171,10 @@ public abstract class GameCharacter extends GameObject  {
     }
 
 
+
+
+
+
     //  - - - - - - - Getters and setters - - - -
 
     public int getHealthPoint() {
