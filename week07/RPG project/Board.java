@@ -119,21 +119,6 @@ public class Board extends JPanel implements KeyListener{
                     }
                 }
             }
-
-//        @@@@@@@ implemented for testing  @@@@@@@
-
-//            if(keyCode == KeyEvent.VK_S){
-//                savingGame();
-////                saveMap(currentMap);
-////                saveHero(mainHero);
-//            }
-//            if(keyCode == KeyEvent.VK_L){
-//                loadingGame();
-//
-//                System.out.println("aaa");
-//                loadMap();
-//                System.out.println("sssss");
-//                repaint();
         }
 
         repaint();
@@ -209,8 +194,5 @@ public class Board extends JPanel implements KeyListener{
         this.mainHero = mainHero;
     }
 
-    public SaveLoadTxt getSaveGame() {
-        return saveGame;
-    }
 }
 

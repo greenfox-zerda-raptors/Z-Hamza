@@ -12,10 +12,6 @@ abstract public class Enemy extends GameCharacter {
         super(fileName, stats);
     }
 
-    public Enemy(String filename, int posX, int posY) {
-        super(filename, posX, posY);
-    }
-
 
 
 

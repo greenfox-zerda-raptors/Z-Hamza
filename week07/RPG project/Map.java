@@ -251,7 +251,6 @@ public class Map  {
         return maplevel;
     }
 
-
     public ArrayList<Enemy> convertToEnemiesArray(ArrayList<int[]> stats){
        ArrayList<Enemy> result = new ArrayList<>();
 
@@ -266,9 +265,6 @@ public class Map  {
         return result;
     }
 
-    public MapLayout getMapArr() {
-        return mapArr;
-    }
 
 
 }

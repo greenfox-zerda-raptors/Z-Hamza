@@ -8,11 +8,4 @@ public class Tile extends GameObject {
         this.stepabble = stepabble;
     }
 
-    public boolean isStepabble() {
-        return stepabble;
-    }
-
-    public void setStepabble(boolean stepabble) {
-        this.stepabble = stepabble;
-    }
 }

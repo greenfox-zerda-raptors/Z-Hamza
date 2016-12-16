@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.util.Random;
+        import java.util.Random;
 
 /**
  * Created by Zoltán on 2016.12.05..

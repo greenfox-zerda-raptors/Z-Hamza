@@ -7,6 +7,7 @@ import java.io.IOException;
 /**
  * Created by Zoltán on 2016.12.07..
  *
+ * As a sample for drawing
  */
 public class PositionedImage {
 

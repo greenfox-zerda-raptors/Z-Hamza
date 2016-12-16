@@ -29,11 +29,6 @@ public class SaveLoadTxt {
         this.currentMap = currentMap;
     }
 
-    public SaveLoadTxt(Hero mainhero, Map currentMap, String saveFileName){
-        this(mainhero, currentMap);
-        this.fileName = saveFileName;
-    }
-
     public void saveNow(String fileName){
         ArrayList<int[]> tempStorage = new ArrayList<>();
         //        - - - - - -  Map values - - -  - - - - - -

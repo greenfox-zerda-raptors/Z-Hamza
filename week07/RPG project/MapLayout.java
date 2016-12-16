@@ -12,7 +12,6 @@ public class MapLayout {
         for (int i = 0; i < 25; i++) {
             Maps.add(generateRandomMap());
         }
-
     }
 
     public int[][] getMap(int number){
@@ -31,13 +30,6 @@ public class MapLayout {
         int[][] result = randomMaze.print();
         result[0][0] = 1;
         return result;
-    }
-    public ArrayList<int[][]> getMaps() {
-        return Maps;
-    }
-
-    public void setMaps(ArrayList<int[][]> maps) {
-        Maps = maps;
     }
 }
 
