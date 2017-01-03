@@ -12,7 +12,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
+        if (playerName == player1Name)
             player1Score += 1;
         else
             player2Score += 1;
@@ -56,10 +56,10 @@ public class TennisGame1 implements TennisGame {
 
     private String winnerName(int scoreDifference){
         if(scoreDifference > 0) {
-            return "player1";
+            return player1Name;
         }
         else{
-            return "player2";
+            return player2Name;
         }
     }
     private boolean playersScoresEqual() {
@@ -92,5 +92,6 @@ public class TennisGame1 implements TennisGame {
             return false;
         }
     }
+
 }
 

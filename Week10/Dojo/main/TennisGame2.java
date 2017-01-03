@@ -18,64 +18,34 @@ public class TennisGame2 implements TennisGame
         String score = "";
         if (P1point == P2point && P1point < 4)
         {
-            if (P1point==0)
-                score = "Love";
-            if (P1point==1)
-                score = "Fifteen";
-            if (P1point==2)
-                score = "Thirty";
-            score += "-All";
+            score = playerPoints(P1point) + "-All";
         }
         if (P1point==P2point && P1point>=3)
             score = "Deuce";
         
         if (P1point > 0 && P2point==0)
         {
-            if (P1point==1)
-                P1Score = "Fifteen";
-            if (P1point==2)
-                P1Score = "Thirty";
-            if (P1point==3)
-                P1Score = "Forty";
-            
-            P2Score = "Love";
+            P1Score = playerPoints(P1point);
+            P2Score = playerPoints(P2point);
             score = P1Score + "-" + P2Score;
         }
         if (P2point > 0 && P1point==0)
         {
-            if (P2point==1)
-                P2Score = "Fifteen";
-            if (P2point==2)
-                P2Score = "Thirty";
-            if (P2point==3)
-                P2Score = "Forty";
-
-            P1Score = "Love";
+            P2Score = playerPoints(P2point);
+            P2Score = playerPoints(P2point);
             score = P1Score + "-" + P2Score;
         }
         
         if (P1point>P2point && P1point < 4)
         {
-            if (P1point==2)
-                P1Score ="Thirty";
-            if (P1point==3)
-                P1Score ="Forty";
-            if (P2point==1)
-                P2Score ="Fifteen";
-            if (P2point==2)
-                P2Score ="Thirty";
+            P1Score = playerPoints(P1point);
+            P2Score = playerPoints(P2point);
             score = P1Score + "-" + P2Score;
         }
         if (P2point>P1point && P2point < 4)
         {
-            if (P2point==2)
-                P2Score ="Thirty";
-            if (P2point==3)
-                P2Score ="Forty";
-            if (P1point==1)
-                P1Score ="Fifteen";
-            if (P1point==2)
-                P1Score ="Thirty";
+            P1Score = playerPoints(P1point);
+            P2Score = playerPoints(P2point);
             score = P1Score + "-" + P2Score;
         }
         
@@ -99,7 +69,7 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
-    
+
     public void SetP1Score(int number){
         
         for (int i = 0; i < number; i++)
@@ -131,5 +101,18 @@ public class TennisGame2 implements TennisGame
             P1Score();
         else
             P2Score();
+    }
+    private String playerPoints(int playerPoint){
+        String score = "";
+        if (playerPoint==0)
+            score = "Love";
+        if (playerPoint==1)
+            score = "Fifteen";
+        if (playerPoint==2)
+            score = "Thirty";
+        if(playerPoint == 3){
+            score = "Forty";
+        }
+        return score;
     }
 }
