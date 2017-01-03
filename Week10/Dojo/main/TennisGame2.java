@@ -22,33 +22,15 @@ public class TennisGame2 implements TennisGame
         }
         if (P1point==P2point && P1point>=3)
             score = "Deuce";
-        
-        if (P1point > 0 && P2point==0)
-        {
+
+
+        if((P1point > 0 && P2point ==0) || (P2point > 0 && P1point == 0) || (P1point>P2point && P1point < 4) || (P2point>P1point && P2point < 4)){
             P1Score = playerPoints(P1point);
             P2Score = playerPoints(P2point);
             score = P1Score + "-" + P2Score;
         }
-        if (P2point > 0 && P1point==0)
-        {
-            P2Score = playerPoints(P2point);
-            P2Score = playerPoints(P2point);
-            score = P1Score + "-" + P2Score;
-        }
-        
-        if (P1point>P2point && P1point < 4)
-        {
-            P1Score = playerPoints(P1point);
-            P2Score = playerPoints(P2point);
-            score = P1Score + "-" + P2Score;
-        }
-        if (P2point>P1point && P2point < 4)
-        {
-            P1Score = playerPoints(P1point);
-            P2Score = playerPoints(P2point);
-            score = P1Score + "-" + P2Score;
-        }
-        
+
+
         if (P1point > P2point && P2point >= 3)
         {
             score = "Advantage player1";
@@ -67,6 +49,7 @@ public class TennisGame2 implements TennisGame
         {
             score = "Win for player2";
         }
+
         return score;
     }
 
