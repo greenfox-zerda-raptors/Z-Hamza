@@ -45,15 +45,23 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String checkAdvantageOrWin() {
-        String score;
         int scoreDifference = player1Score - player2Score;
-        if (scoreDifference == 1) score ="Advantage player1";
-        else if (scoreDifference ==-1) score ="Advantage player2";
-        else if (scoreDifference >=2) score = "Win for player1";
-        else score ="Win for player2";
-        return score;
+        if(Math.abs(scoreDifference) == 1){
+            return "Advantage " + winnerName(scoreDifference);
+        }
+        else {
+            return  "Win for " + winnerName(scoreDifference);
+        }
     }
 
+    private String winnerName(int scoreDifference){
+        if(scoreDifference > 0) {
+            return "player1";
+        }
+        else{
+            return "player2";
+        }
+    }
     private boolean playersScoresEqual() {
         return player1Score == player2Score;
     }
