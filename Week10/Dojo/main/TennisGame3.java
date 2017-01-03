@@ -26,10 +26,10 @@ public class TennisGame3 implements TennisGame {
     }
     
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            this.player1Point += 1;
+        if (playerName == player1Name)
+            this.player1Point ++;
         else
-            this.player2Point += 1;
+            this.player2Point ++;
         
     }
 

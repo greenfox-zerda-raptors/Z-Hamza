@@ -1,4 +1,3 @@
-
 public class TennisGame1 implements TennisGame {
 
     private int player1Score = 0;
@@ -24,10 +23,10 @@ public class TennisGame1 implements TennisGame {
             return scoreforTie();
         }
         else if (someoneHasMoreThanForthy()) {
-            return  checkAdvantageOrWin();
+            return  scoreforWinOrAdvantage();
         }
         else {
-            return getGeneralScore();
+            return scoreforGeneral();
         }
     }
 
@@ -42,11 +41,11 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private String getGeneralScore() {
+    private String scoreforGeneral() {
         return writeoutScore(player1Score)+ "-" + writeoutScore(player2Score);
     }
 
-    private String checkAdvantageOrWin() {
+    private String scoreforWinOrAdvantage() {
         int scoreDifference = player1Score - player2Score;
         if(Math.abs(scoreDifference) == 1){
             return "Advantage " + winnerName(scoreDifference);
@@ -87,9 +86,9 @@ public class TennisGame1 implements TennisGame {
         }
         return result;
     }
+
     public Boolean someoneHasMoreThanForthy(){
         return (player1Score >=4 || player2Score >=4);
     }
-
 }
 
