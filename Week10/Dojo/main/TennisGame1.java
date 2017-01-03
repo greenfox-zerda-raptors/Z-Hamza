@@ -1,6 +1,6 @@
 
 public class TennisGame1 implements TennisGame {
-    
+
     private int player1Score = 0;
     private int player2Score = 0;
     private String player1Name;
@@ -19,23 +19,25 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-        if (playersScoresEqual())
-        {
-            if(player1Score < 3) {
-                score = writeoutScore(player1Score) + "-All";
-            }
-            else{
-                score = "Deuce";
-            }
+
+        if (playersScoresEqual()) {
+            return scoreforTie();
         }
-        else if (someoneHasMoreThanForthy())
-        {
-            score = checkAdvantageOrWin();
+        else if (someoneHasMoreThanForthy()) {
+            return  checkAdvantageOrWin();
         }
-        else
-        {
-            score = getGeneralScore();
+        else {
+            return getGeneralScore();
+        }
+    }
+
+    private String scoreforTie() {
+        String score;
+        if(player1Score < 3) {
+            score = writeoutScore(player1Score) + "-All";
+        }
+        else{
+            score = "Deuce";
         }
         return score;
     }
@@ -86,11 +88,7 @@ public class TennisGame1 implements TennisGame {
         return result;
     }
     public Boolean someoneHasMoreThanForthy(){
-        if(player1Score >=4 || player2Score >=4){
-            return true;
-        }else {
-            return false;
-        }
+        return (player1Score >=4 || player2Score >=4);
     }
 
 }
