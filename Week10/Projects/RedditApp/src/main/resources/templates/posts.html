@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Workshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<h1 th:text = "'Hello World!'"> Hello Thymeleaf </h1>
+
+<ul style="list-style: none" th:each="item: ${posts}">
+    <li th:text="${item.id} + ' ' +${item.content} + ' ' + ${item.rating}"> Post </li>
+</ul>
+
+<a href="/posts/add">Submit another message</a>
+
+</body>
+</html>
