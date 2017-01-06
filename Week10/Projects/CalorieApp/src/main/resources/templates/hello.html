@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Workshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<h1 th:text = "'Hello World!'"> Hello Thymeleaf </h1>
+<ul th:each="item : ${mealList}">
+    <li th:text="${item.id}+' ' + ${item.occasion} + ' ' + ${item.description}"> Le Food </li>
+</ul>
+<p th:text="${caloriesSum}"></p>
+</body>
+</html>
