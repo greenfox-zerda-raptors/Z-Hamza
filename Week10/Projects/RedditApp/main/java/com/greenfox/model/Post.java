@@ -1,6 +1,7 @@
 package com.greenfox.model;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Created by Zoltán on 2017.01.05..
@@ -18,26 +19,21 @@ public class Post {
     private String content;
     private int rating = 0;
 
-    public Post(){
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar date = Calendar.getInstance();
 
-    }
-
-    public Post(long id, String content, int rating) {
-        this.id = id;
-        this.content = content;
-        this.rating = rating;
+    public Post() {
+//        this.date = Calendar.getInstance();
     }
 
     public Post(int id, String content) {
         this.content = content;
         this.id = id;
+//        this.date = Calendar.getInstance();
     }
 
-    public void incrementRating(){
-        rating ++;
-    }
-    public void decrementRating(){
-        rating--;
+    public void changeRating(int diff) {
+        rating += diff;
     }
 
     public long getId() {
@@ -62,5 +58,13 @@ public class Post {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 }

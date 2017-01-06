@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>RedditApp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<link rel="stylesheet" type="text/css" href="/css/main.css"> </link>-->
+
+</head>
+<body>
+<h1 th:text = "'Reddit_App'"> Hello Thymeleaf </h1>
+
+<p id="submit">
+    <a href="/posts/add">Submit another message</a>
+</p>
+
+<table>
+    <tr>
+        <th> ID </th>
+        <th> Content </th>
+        <th> Rating </th>
+        <th> Date of Posting</th>
+        <th> Rate this post </th>
+    </tr>
+    <tr th:each="item, iterStat: ${posts}"
+
+        th:if=" ${iterStat.index} &gt; ${firstPostNumber} and ${iterStat.index}  &lt; ${lastPostNumber} ">
+
+            <td th:text="${item.id}"> ID </td>
+            <td th:text="${item.content}"> Content </td>
+            <td th:text="${item.rating}"> Rating </td>
+            <td th:text="${#dates.format(item.date,'YYYY/MM/dd HH:mm')}"> Date of Posting</td>
+
+            <td>
+                <a th:text="'+'" href="+" th:href="@{'/posts/updownvote/{id}/{difference}'(id=${item.id}, difference = '1')}"> </a>
+                <a th:text="'-'" href="-" th:href="@{'/posts/updownvote/{id}/{difference}'(id=${item.id}, difference = '-1')}"> </a>
+            </td>
+    </tr>
+</table>
+
+<p> <a th:text="'Previous'" href="Previous" th:href="@{'/posts/{nextPage}' (nextPage=${currentPage}-1)}">  </a>
+    <a th:text="'Next'" href="Next" th:href="@{'/posts/{prevPage}' (prevPage=${currentPage}+1)}"> </a>
+</p>
+
+</body>
+</html>

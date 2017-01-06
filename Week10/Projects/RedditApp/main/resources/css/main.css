@@ -1,0 +1,23 @@
+body{
+    background-color: #3ab58e;
+    font-size: 30px;
+    color: #63051b;
+}
+h1{
+    align-content: center;
+}
+table{
+    margin-left: 25%;
+    align-content: center;
+    text-align: center;
+}
+
+td{
+    width: 15%;
+}
+
+#submit{
+    font-size: 24px;
+    margin-left: 20%;
+    margin-top: 40px;
+}
