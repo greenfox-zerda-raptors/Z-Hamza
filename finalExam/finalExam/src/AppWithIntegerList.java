@@ -24,7 +24,6 @@ public class AppWithIntegerList {
                 result += matrix[k][l];
             }
         }
-
         return result;
     }
 }

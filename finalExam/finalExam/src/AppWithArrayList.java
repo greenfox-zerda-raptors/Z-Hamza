@@ -11,13 +11,14 @@ import java.util.Arrays;
 public class AppWithArrayList {
 
     public static void main(String[] args) {
-        ArrayList<ArrayList<Integer>> testList = new ArrayList<>();
-        testList.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)));
-        testList.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)));
-        testList.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)));
-        testList.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)));
-        testList.add(new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)));
-
+        ArrayList<ArrayList<Integer>> testList = new ArrayList<>(Arrays.asList(
+                (new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7))),
+                (new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7))),
+                (new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7))),
+                (new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7))),
+                (new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7)))
+        ));
+        
         System.out.println(sumNumbersInMatrix(testList));
 
     }
