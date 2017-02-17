@@ -22,13 +22,11 @@ public class AppWithArrayList {
 
     }
 
-    public static int sumNumbersInMatrix(ArrayList<ArrayList<Integer>> inTakeList){
+    private static int sumNumbersInMatrix(ArrayList<ArrayList<Integer>> ListOfListOfNumbers){
         int result = 0;
-        for(int i = 0; i < inTakeList.size(); i++){
-            ArrayList<Integer> currentList = inTakeList.get(i);
-            for(int j = 0; j < currentList.size(); j++){
-                int number = currentList.get(j);
-                result = result + number;
+        for (ArrayList<Integer> innerList : ListOfListOfNumbers) {
+            for (Integer innerListElement : innerList) {
+                result += innerListElement;
             }
         }
         return result;
